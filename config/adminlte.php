@@ -120,19 +120,19 @@ return [
             'submenu' => [
                 [
                     'text' => 'Capital',
-                    'url'  => '#',
+                    'url'  => '/capital',
                 ],
                 [
                     'text'    => 'Asset',
-                    'url'     => '#',
+                    'url'     => '/asset',
                 ],
                 [
                     'text' => 'Supplier',
-                    'url'  => '#',
+                    'url'  => '/supplier',
                 ],
                 [
                     'text' => 'Product',
-                    'url'  => '#',
+                    'url'  => '/product',
                 ],
             ],
         ],
@@ -142,11 +142,11 @@ return [
             'submenu' => [
                 [
                     'text' => 'Purchasing',
-                    'url'  => '#',
+                    'url'  => '/purchasing',
                 ],
                 [
                     'text'    => 'Selling',
-                    'url'     => '#',
+                    'url'     => '/selling',
                 ],
             ],
         ],
@@ -161,7 +161,7 @@ return [
             'submenu' => [
                 [
                     'text' => 'Account Code',
-                    'url'  => '#',
+                    'url'  => '/account',
                 ],
             ],
         ],
@@ -171,15 +171,15 @@ return [
             'submenu' => [
                 [
                     'text' => 'Balance Sheet',
-                    'url'  => '#',
+                    'url'  => '/balancesheet',
                 ],
                 [
                     'text'    => 'Income Statement',
-                    'url'     => '#',
+                    'url'     => '/incomestatement',
                 ],
                 [
                     'text'    => 'Cashflowç',
-                    'url'     => '#',
+                    'url'     => 'cashflow',
                 ],
             ],
         ],
