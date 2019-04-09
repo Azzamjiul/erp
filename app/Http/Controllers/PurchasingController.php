@@ -13,7 +13,7 @@ class PurchasingController extends Controller
      */
     public function index()
     {
-        //
+        return view('purchasing.index');
     }
 
     /**
@@ -43,9 +43,10 @@ class PurchasingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    // public function show($id)
+    public function show()
     {
-        //
+        return view('purchasing.show');
     }
 
     /**

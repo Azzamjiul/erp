@@ -15,8 +15,8 @@
       <div class="box-header">
         {{-- <h3 class="box-title">Daftar Purchasing</h3> --}}
         <div class="input-group-btn">
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-            Tambah Purchasing
+          <button type="button" class="btn btn-warning">
+            <a href="{{route('purchasing.index')}}" style="color:azure">Kembali</a>
           </button>
         </div>
         <div class="box-tools">
@@ -34,20 +34,42 @@
       <div class="box-body table-responsive no-padding">
         <table class="table table-hover">
           <thead>
-            <th>Tanggal</th>
             <th>No Pembelian</th>
+            <th>No Detail</th>
+            <th>Supplier</th>
+            <th>Product Barcode</th>
+            <th>Product Name</th>
+            <th>Quantity</th>
+            <th>Unit Price</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
             <th>Total</th>
-            <th>Status</th>
-            <th>Action</th>
           </thead>
 
           <tbody>
             <tr>
-              <td>04 April 2019</td>
-              <td>PO201904041</td>
-              <td>Rp 264.000</td>
-              <td><label for="" class="label label-success">Complete</label></td>
-              <td><a class="btn btn-primary" href="{{ route('purchasing.show',1) }}"><i class="fa fa-eye"></i></a></td>
+                <td>PO201904041</td>
+                <td>PO2019040410001</td>
+                <td>Supplier 1</td>
+                <td>89686041705</td>
+                <td>INDOMIE GORENG SPESIAL JUMBO</td>
+                <td>120</td>
+                <td>Rp 2.000</td>
+                <td>Rp 240.000</td>
+                <td>Rp 24.000</td>
+                <td>Rp 264.000</td>
+            </tr>
+            <tr>
+                <td>PO201904042</td>
+                <td>PO2019040410001</td>
+                <td>Supplier 1</td>
+                <td>89686011982</td>
+                <td>INDOMIE GORENG VEGAN 5'S</td>
+                <td>100</td>
+                <td>Rp 2.000</td>
+                <td>Rp 200.000</td>
+                <td>Rp 20.000</td>
+                <td>Rp 220.000</td>
             </tr>
           </tbody>
         </table>
