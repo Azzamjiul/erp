@@ -25,7 +25,7 @@
                                 <ul>
                                     <li><a href="#">89686041705 - INDOMIE GORENG SPESIAL JUMBO</a>
                                         <ul>
-                                            <li><a href="#">89686041705-1 - INDOMIE GORENG SPESIAL JUMBO</a></li>
+                                            <li><a href="#">89686041705-1 - INDOMIE GORENG SPESIAL JUMBO</a> <label for="" class="label label-success">100 Pcs</label></li>
                                             <li><a href="#">89686041705-2 - INDOMIE GORENG SPESIAL JUMBO</a></li>
                                         </ul>
                                     </li>
