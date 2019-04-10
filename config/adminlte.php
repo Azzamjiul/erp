@@ -164,6 +164,10 @@ return [
                     'text' => 'Account Code',
                     'url'  => '/account',
                 ],
+                [
+                    'text' => 'Journal',
+                    'url'  => '/journal',
+                ],
             ],
         ],
         [

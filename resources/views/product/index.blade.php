@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Inventory</h1>
+<h1>Product</h1>
 @stop
 
 @section('content')
@@ -13,7 +13,7 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3>Inventory List</h3>
+                <h3>Product List</h3>
             </div>
             <!-- /.box-header -->
 
@@ -23,12 +23,7 @@
                         <ul>
                             <li><a href="#">Mie</a>
                                 <ul>
-                                    <li><a href="#">89686041705 - INDOMIE GORENG SPESIAL JUMBO</a>
-                                        <ul>
-                                            <li><a href="#">89686041705-1 - INDOMIE GORENG SPESIAL JUMBO</a></li>
-                                            <li><a href="#">89686041705-2 - INDOMIE GORENG SPESIAL JUMBO</a></li>
-                                        </ul>
-                                    </li>
+                                    <li><a href="#link2">89686041705 - INDOMIE GORENG SPESIAL JUMBO</a></li>
                                     <li><a href="#link2">89686011982 - INDOMIE GORENG VEGAN 5'S</a></li>
                                 </ul>
                             </li>

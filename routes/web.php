@@ -39,3 +39,9 @@ Route::resource('selling','SellingController');
 
 // Inventory Routes
 Route::resource('inventory','InventoryController');
+
+// Product Routes
+Route::resource('product','ProductController');
+
+// Journal Routes
+Route::resource('journal','JournalController');
