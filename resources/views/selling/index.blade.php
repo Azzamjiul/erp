@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Purcashing</h1>
+<h1>Selling</h1>
 @stop
 
 @section('content')
@@ -13,11 +13,11 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        {{-- <h3 class="box-title">Daftar Purchasing</h3> --}}
+        {{-- <h3 class="box-title">Daftar Selling</h3> --}}
         <div class="input-group-btn">
-          <a href="{{route('purchasing.create')}}" >
+          <a href="{{route('selling.create')}}" >
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-            Tambah Purchasing
+            Tambah Selling
             </button>
           </a>
         </div>
@@ -27,19 +27,25 @@
         <table class="table table-hover">
           <thead>
             <th>Tanggal</th>
-            <th>No Pembelian</th>
+            <th>No Penjualan</th>
+            <th>Customer</th>
+            <th>Casheer</th>
+            <th>Subtotal</th>
+            <th>Tax</th>
             <th>Total</th>
-            <th>Status</th>
             <th>Action</th>
           </thead>
 
           <tbody>
             <tr>
               <td>04 April 2019</td>
-              <td>PO201904041</td>
-              <td>Rp 264.000</td>
-              <td><label for="" class="label label-success">Complete</label></td>
-              <td><a class="btn btn-primary" href="{{ route('purchasing.show',1) }}"><i class="fa fa-eye"></i></a></td>
+              <td>SO201904041</td>
+              <td>Customer 1</td>
+              <td>Casheer 1</td>
+              <td>Rp 720.000</td>
+              <td>10%</td>
+              <td>Rp 792.000</td>
+              <td><a class="btn btn-primary" href="{{ route('selling.show',1) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
           </tbody>
         </table>

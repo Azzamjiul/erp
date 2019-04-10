@@ -112,7 +112,7 @@ return [
         [
             'text' => 'Dashboard',
             'icon' => 'dashboard',
-            'url'  => 'admin',
+            'url'  => '/home',
         ],
         [
             'text'    => 'Master Data',
@@ -152,7 +152,8 @@ return [
         ],
         [
             'text'    => 'Inventory',
-            'icon'    => 'box-open',
+            'icon'    => 'home',
+            'url'     => '/inventory'
         ],
         'ACCOUNTING',
         [

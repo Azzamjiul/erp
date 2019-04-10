@@ -33,3 +33,9 @@ Route::resource('account','AccountController');
 
 // Purchasing Routes
 Route::resource('purchasing','PurchasingController');
+
+// Selling Routes
+Route::resource('selling','SellingController');
+
+// Inventory Routes
+Route::resource('inventory','InventoryController');

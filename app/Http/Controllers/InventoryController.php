@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class PurchasingController extends Controller
+class InventoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class PurchasingController extends Controller
      */
     public function index()
     {
-        return view('purchasing.index');
+        return view('inventory.index');
     }
 
     /**
@@ -23,7 +23,7 @@ class PurchasingController extends Controller
      */
     public function create()
     {
-        return view('purchasing.create');
+        //
     }
 
     /**
@@ -43,10 +43,9 @@ class PurchasingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    // public function show($id)
-    public function show()
+    public function show($id)
     {
-        return view('purchasing.show');
+        //
     }
 
     /**
