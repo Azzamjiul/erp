@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Asset;
 
 class AssetController extends Controller
 {
@@ -13,7 +14,8 @@ class AssetController extends Controller
      */
     public function index()
     {
-        return view('asset.index');
+        $assets = Asset::all();
+        return view('asset.index', compact('assets'));
     }
 
     /**
@@ -23,7 +25,7 @@ class AssetController extends Controller
      */
     public function create()
     {
-        //
+        // 
     }
 
     /**
@@ -34,7 +36,8 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Asset::create($request->all());
+        return redirect()->route('asset.index');
     }
 
     /**
@@ -54,9 +57,10 @@ class AssetController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($asset_id)
     {
-        //
+        $asset = Asset::findOrFail($asset_id);
+        return view('asset.edit', compact('asset'));
     }
 
     /**
@@ -68,7 +72,9 @@ class AssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $asset = Asset::findOrFail($id);
+        $asset->update($request->all());
+        return redirect()->route('asset.index');
     }
 
     /**

@@ -34,30 +34,29 @@
         <table class="table table-hover">
           <thead>
             <th>NO</th>
-            <th>Nomor Akun</th>
+            <th>Tanggal</th>
             <th>Modal</th>
             <th>Jumlah</th>
-            <th>Tanggal</th>
             <th>Keterangan</th>
           </thead>
-
+          
           <tbody>
+          @if(count($capitals))
+            <?php $i = 1; ?>
+            @foreach($capitals as $capital)
             <tr>
-              <td>1</td>
-              <td>1-1000</td>
-              <td>Modal Pak Budi</td>
-              <td>Rp 10.000.000</td>
-              <td>11-7-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
+              <td>{{$i, $i++}}</td>
+              <td>{{$capital->created_at}}</td>
+              <td>{{$capital->capital_name}}</td>
+              <td>Rp {{$capital->capital_amount}}</td>
+              <td>{{$capital->explanation}}</td>
             </tr>
-            <tr>
-              <td>2</td>
-              <td>1-1000</td>
-              <td>Modal Pak Budi</td>
-              <td>Rp 10.000.000</td>
-              <td>11-9-2014</td>
-              <td>Bacon ipsum dolor sit amet salami venison chicken flank fatback doner.</td>
-            </tr>
+            @endforeach
+          @else
+            <tfoot>
+              <td colspan="6">Tidak Ada Data</td>
+            </tfoot>
+          @endif
           </tbody>
         </table>
       </div>
@@ -74,28 +73,31 @@
         <h4 class="modal-title">Form Menambah Modal</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
-          <!-- text input -->
-          <div class="form-group">
-            <label>Jenis Modal</label>
-            <select name="" id="" class="form-control">
-              <option value="">Jenis 1</option>
-              <option value="">Jenis 2</option>
-            </select>
-          </div>
+        <form role="form" action="{{route('capital.store')}}" method="post">
+          @csrf
+          <!-- hidden input -->
+          <input type="hidden" name="user_id" value="{{Auth::id()}}">
+          <input type="hidden" name="company_id" value="{{Auth::user()->company_id}}">
           <div class="form-group">
             <label>Modal</label>
-            <input type="text" class="form-control" placeholder="Masukkan Nama Modal">
+            <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Nama Modal">
           </div>
+
           <div class="form-group">
             <label>Jumlah</label>
-            <input type="number" class="form-control" placeholder="Masukkan Besar Modal">
+            <input name="capital_amount" type="number" class="form-control" placeholder="Masukkan Besar Modal">
           </div>
+
+          <div class="form-group">
+            <label>Keterangan</label>
+            <textarea name="explanation" id="" cols="30" rows="5" class="form-control"></textarea>
+          </div>
+
+          <button class="btn btn-primary" type="submit">Tambah Modal</button>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Tambah Modal</button>
       </div>
     </div>
     <!-- /.modal-content -->

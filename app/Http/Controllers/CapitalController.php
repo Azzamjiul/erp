@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Auth;
+use App\Capital;
 
 class CapitalController extends Controller
 {
@@ -13,7 +15,8 @@ class CapitalController extends Controller
      */
     public function index()
     {
-        return view('capital.index');
+        $capitals = Capital::all();
+        return view('capital.index',compact('capitals'));
     }
 
     /**
@@ -34,7 +37,8 @@ class CapitalController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Capital::create($request->all());
+        return redirect()->route('capital.index');
     }
 
     /**

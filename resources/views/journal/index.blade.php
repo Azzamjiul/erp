@@ -5,7 +5,7 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-<h1>Modal</h1>
+<h1>Jurnal</h1>
 @stop
 
 @section('content')

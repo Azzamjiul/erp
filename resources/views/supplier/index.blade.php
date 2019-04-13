@@ -44,15 +44,31 @@
           </thead>
 
           <tbody>
+          <?php $i = 1; ?>
+            @if(count($assets))
+            @foreach($assets as $asset)
             <tr>
-              <td>1</td>
-              <td>Supplier 1</td>
-              <td>Supplier1@mail.com</td>
-              <td>08123456789</td>
-              <td>Jl. Kapus No 2</td>
-              <td>Supplier yang bergerak pada makanan ringan</td>
-              <td><button class="btn btn-danger">Delete</button></td>
+              <td>{{ $i, $i++ }}</td>
+              <td>{{$asset->asset_name}}</td>
+              <td>{{$asset->asset_cost}}</td>
+              <td>{{$asset->asset_quantity}}</td>
+              <td>{{$asset->asset_duration}} {{$asset->asset_duration_type}}</td>
+              <td>{{$asset->asset_salvation_value}}</td>
+              <td>
+                <a href="{{route('asset.edit', $asset->id)}}" class="btn btn-warning btn-sm" role="button"><i class="fa fa-pencil-square"></i> Edit</a>
+                {!! Form::open(array('route' => array('asset.destroy', $asset->asset_id),'method' => 'delete','style' => 'display:inline')) !!}
+                <button class='btn btn-sm btn-danger delete-btn' type='submit'>
+                  <i class='fa fa-times-circle'></i> Delete
+                </button>
+                {!! Form::close() !!}
+              </td>
             </tr>
+            @endforeach
+            @else
+            <tr>
+              <td colspan="">Tidak Ada Data</td>
+            </tr>
+            @endif
           </tbody>
         </table>
       </div>

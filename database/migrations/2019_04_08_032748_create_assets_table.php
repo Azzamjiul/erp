@@ -18,10 +18,10 @@ class CreateAssetsTable extends Migration
             $table->string('asset_name');
             $table->unsignedBigInteger('asset_cost');
             $table->integer('asset_duration');
-            $table->char('asset_duration_type',2);
-            $table->integer('asset_capacity');
-            $table->integer('asset_capacity_type');
-            $table->unsignedBigInteger('asset_value');
+            $table->string('asset_duration_type');
+            $table->integer('asset_quantity');
+            $table->integer('asset_quantity_type');
+            $table->unsignedBigInteger('asset_salvation_value');
             $table->integer('asset_type');
             $table->integer('status')->nullable();
             $table->integer('company_id');
