@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Account;
+use DB;
 
 class AccountController extends Controller
 {
@@ -14,6 +16,30 @@ class AccountController extends Controller
     public function index()
     {
         return view('account.index');
+    }
+
+    public function getAccountList(Request $request)
+    {
+        $id = isset($request->id) ? $request->id : 0;
+        $results = array();
+        $results = Account::where('parentId','=',$id)->get();
+        // dd($request);
+        foreach($results as $result){
+            // dd('HERE');
+            $result->state = $this->has_child($result->id) ? 'closed' : 'open';
+            // if($result->quantity != NULL){
+            //     $result->total = $result->price * $result->quantity;
+            // }
+        }
+        return json_encode($results);
+    }
+
+    public function has_child($id){
+        $rs = DB::select('select count(*) as jumlah from products where parentId='.$id);
+        // dd($rs[0]);
+        $row = $rs[0]->jumlah;
+        // dd('here');
+        return $row>0 ? true : false;
     }
 
     /**

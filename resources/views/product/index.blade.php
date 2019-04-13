@@ -61,22 +61,6 @@
 @stop
 
 @section('content')
-<!-- <div class="container">
-    <table id="dg" title="Product List" class="easyui-datagrid" method="get" url="getProduct" toolbar="#toolbar" rownumbers="true" fitColumns="true" singleSelect="true" style="width:550px;height:250px">
-        <thead>
-            <tr>
-                <th field="product_item_barcode" width="50">Barcode</th>
-                <th field="product_item_name" width="50">Product Name</th>
-            </tr>
-        </thead>
-    </table>
-    <div id="toolbar">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
-    </div>
-</div> -->
-
 <div class="container">
     <table title="Products" class="easyui-treegrid" method="get" style="width:700px;height:300px" url="getProduct" rownumbers="true" idField="id" treeField="name">
         <thead>

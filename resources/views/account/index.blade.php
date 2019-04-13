@@ -8,7 +8,7 @@
 <h1>Chart of Account</h1>
 @stop
 
-@section('content')
+@section('')
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
@@ -136,6 +136,58 @@
   <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+@stop
+
+@section('content')
+<div class="container">
+    <table title="Account" class="easyui-treegrid" method="get" style="width:700px;height:300px" url="getAccount" rownumbers="true" idField="id" treeField="account_number">
+        <thead>
+            <tr>
+                <th field="account_number" width="300">Account Number</th>
+                <th field="account_name" width="100" align="right">Account Name</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@stop
+
+@section('css')
+<link rel="stylesheet" href="/css/admin_custom.css">
+<link href="css/file-explore.css" rel="stylesheet">
+<!-- Easy UI CSS -->
+<link href="{{asset('vendor/jeasyui/themes/default/easyui.css')}}" rel="stylesheet">
+<link href="{{asset('vendor/jeasyui/themes/icon.css')}}" rel="stylesheet">
+@stop
+
+@section('js')
+<script>
+    console.log('Hi!');
+</script>
+
+// file-exploler tree
+<script src="//code.jquery.com/jquery.min.js"></script>
+<script src="js/file-explore.js"></script>
+<script>
+    $(document).ready(function() {
+        $(".file-tree").filetree();
+    });
+
+    $(document).ready(function() {
+        $(".file-tree").filetree({
+            animationSpeed: 'fast'
+        });
+    });
+
+    $(document).ready(function() {
+        $(".file-tree").filetree({
+            collapsed: true,
+        });
+    });
+</script>
+
+<!-- Easy UI JS -->
+<script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
 @stop
 
 @section('css')
