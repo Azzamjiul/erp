@@ -60,6 +60,10 @@
 </div>
 @stop
 
+@section('')
+
+@stop
+
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
 <link href="css/file-explore.css" rel="stylesheet">

@@ -130,10 +130,6 @@ return [
                     'text' => 'Supplier',
                     'url'  => '/supplier',
                 ],
-                [
-                    'text' => 'Product',
-                    'url'  => '/product',
-                ],
             ],
         ],
         [
@@ -151,9 +147,20 @@ return [
             ],
         ],
         [
-            'text'    => 'Inventory',
+            'text'    => 'Warehouse',
             'icon'    => 'home',
-            'url'     => '/inventory'
+            'submenu' => [
+                [
+                    'text'    => 'Product',
+                    'icon'    => 'product-hunt',
+                    'url'     => '/product',
+                ],
+                [
+                    'text'    => 'Inventory',
+                    'icon'    => 'cube',
+                    'url'     => '/inventory',
+                ],
+            ],
         ],
         'ACCOUNTING',
         [
