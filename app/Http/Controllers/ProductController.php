@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -14,6 +16,53 @@ class ProductController extends Controller
     public function index()
     {
         return view('product.index');
+    }
+
+    /**
+     * Get a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function getProductList(Request $request)
+    {
+        // $id = isset($_POST['id']) ? intval($_POST['id']) : 0;
+     
+        // include 'conn.php';
+        // $result = array();
+        // $rs = mysql_query("select * from products where parentId=$id");
+        // while($row = mysql_fetch_array($rs)){
+        //     $row['state'] = has_child($row['id']) ? 'closed' : 'open';
+        //     $row['total'] = $row['price']*$row['quantity'];
+        //     array_push($result, $row);
+        // }
+         
+        // echo json_encode($result);
+         
+        // function has_child($id){
+        //     $rs = mysql_query("select count(*) from products where parentId=$id");
+        //     $row = mysql_fetch_array($rs);
+        //     return $row[0] > 0 ? true : false;
+        // }
+        $id = isset($request->id) ? $request->id : 0;
+        $results = array();
+        $results = Product::where('parentId','=',$id)->get();
+        // dd($request);
+        foreach($results as $result){
+            // dd('HERE');
+            $result->state = $this->has_child($result->id) ? 'closed' : 'open';
+            if($result->quantity != NULL){
+                $result->total = $result->price * $result->quantity;
+            }
+        }
+        return json_encode($results);
+    }
+
+    public function has_child($id){
+        $rs = DB::select('select count(*) as jumlah from products where parentId='.$id);
+        // dd($rs[0]);
+        $row = $rs[0]->jumlah;
+        // dd('here');
+        return $row>0 ? true : false;
     }
 
     /**

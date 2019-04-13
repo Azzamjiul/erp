@@ -8,7 +8,7 @@
 <h1>Product</h1>
 @stop
 
-@section('content')
+@section('')
 <div class="row">
     <div class="col-xs-12">
         <div class="box box-primary">
@@ -60,13 +60,43 @@
 </div>
 @stop
 
-@section('')
+@section('content')
+<!-- <div class="container">
+    <table id="dg" title="Product List" class="easyui-datagrid" method="get" url="getProduct" toolbar="#toolbar" rownumbers="true" fitColumns="true" singleSelect="true" style="width:550px;height:250px">
+        <thead>
+            <tr>
+                <th field="product_item_barcode" width="50">Barcode</th>
+                <th field="product_item_name" width="50">Product Name</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newUser()">New User</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
+        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
+    </div>
+</div> -->
 
+<div class="container">
+    <table title="Products" class="easyui-treegrid" method="get" style="width:700px;height:300px" url="getProduct" rownumbers="true" idField="id" treeField="name">
+        <thead>
+            <tr>
+                <th field="name" width="250">Name</th>
+                <th field="quantity" width="100" align="right">Quantity</th>
+                <th field="price" width="150" align="right">Price</th>
+                <th field="total" width="150" align="right">Total</th>
+            </tr>
+        </thead>
+    </table>
+</div>
 @stop
 
 @section('css')
 <link rel="stylesheet" href="/css/admin_custom.css">
 <link href="css/file-explore.css" rel="stylesheet">
+<!-- Easy UI CSS -->
+<link href="{{asset('vendor/jeasyui/themes/default/easyui.css')}}" rel="stylesheet">
+<link href="{{asset('vendor/jeasyui/themes/icon.css')}}" rel="stylesheet">
 @stop
 
 @section('js')
@@ -94,4 +124,8 @@
         });
     });
 </script>
+
+<!-- Easy UI JS -->
+<script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
 @stop
