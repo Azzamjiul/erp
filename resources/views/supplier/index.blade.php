@@ -44,19 +44,19 @@
           </thead>
 
           <tbody>
-          <?php $i = 1; ?>
-            @if(count($assets))
-            @foreach($assets as $asset)
+            <?php $i = 1; ?>
+            @if(count($suppliers))
+            @foreach($suppliers as $supplier)
             <tr>
               <td>{{ $i, $i++ }}</td>
-              <td>{{$asset->asset_name}}</td>
-              <td>{{$asset->asset_cost}}</td>
-              <td>{{$asset->asset_quantity}}</td>
-              <td>{{$asset->asset_duration}} {{$asset->asset_duration_type}}</td>
-              <td>{{$asset->asset_salvation_value}}</td>
+              <td>{{$supplier->supplier_name}}</td>
+              <td>{{$supplier->supplier_email}}</td>
+              <td>{{$supplier->supplier_phone}}</td>
+              <td>{{$supplier->supplier_address}}</td>
+              <td>{{$supplier->supplier_description}}</td>
               <td>
-                <a href="{{route('asset.edit', $asset->id)}}" class="btn btn-warning btn-sm" role="button"><i class="fa fa-pencil-square"></i> Edit</a>
-                {!! Form::open(array('route' => array('asset.destroy', $asset->asset_id),'method' => 'delete','style' => 'display:inline')) !!}
+                <a href="{{route('supplier.edit', $supplier->id)}}" class="btn btn-warning btn-sm" role="button"><i class="fa fa-pencil-square"></i> Edit</a>
+                {!! Form::open(array('route' => array('supplier.destroy', $supplier->id),'method' => 'delete','style' => 'display:inline')) !!}
                 <button class='btn btn-sm btn-danger delete-btn' type='submit'>
                   <i class='fa fa-times-circle'></i> Delete
                 </button>
@@ -85,33 +85,36 @@
         <h4 class="modal-title">Form Menambah Supplier</h4>
       </div>
       <div class="modal-body">
-        <form role="form">
-          <!-- text input -->
+        <form role="form" action="{{route('supplier.store')}}" method="post">
+          @csrf
+          <!-- hidden input -->
+          <input type="hidden" name="user_id" value="{{Auth::id()}}">
+          <input type="hidden" name="company_id" value="{{Auth::user()->company_id}}">
           <div class="form-group">
             <label>Nama Supplier</label>
-            <input type="text" class="form-control" placeholder="Masukkan Nama Supplier">
+            <input name="supplier_name" type="text" class="form-control" placeholder="Masukkan Nama Supplier">
           </div>
           <div class="form-group">
             <label>Email Supplier</label>
-            <input type="email" class="form-control" placeholder="Masukkan Harga Supplier">
+            <input name="supplier_email" type="email" class="form-control" placeholder="Masukkan Harga Supplier">
           </div>
           <div class="form-group">
             <label>Telpon</label>
-            <input type="number" class="form-control" placeholder="Masukkan Jumlah Supplier">
+            <input name="supplier_phone" type="number" class="form-control" placeholder="Masukkan Jumlah Supplier">
           </div>
           <div class="form-group">
             <label>Alamat Supplier</label>
-            <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+            <textarea name="supplier_address" id="" cols="30" rows="3" class="form-control"></textarea>
           </div>
           <div class="form-group">
             <label>Deskripsi Supplier</label>
-            <textarea name="" id="" cols="30" rows="3" class="form-control"></textarea>
+            <textarea name="supplier_description" id="" cols="30" rows="3" class="form-control"></textarea>
           </div>
+          <button type="submit" class="btn btn-primary">Tambah Supplier</button>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Tambah Supplier</button>
       </div>
     </div>
     <!-- /.modal-content -->

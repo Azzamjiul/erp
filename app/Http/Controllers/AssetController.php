@@ -85,6 +85,8 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $asset = Asset::findOrFail($id);
+        $asset->delete();
+        return redirect()->route('asset.index');
     }
 }

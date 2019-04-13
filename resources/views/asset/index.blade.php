@@ -56,7 +56,7 @@
               <td>{{$asset->asset_salvation_value}}</td>
               <td>
                 <a href="{{route('asset.edit', $asset->id)}}" class="btn btn-warning btn-sm" role="button"><i class="fa fa-pencil-square"></i> Edit</a>
-                {!! Form::open(array('route' => array('asset.destroy', $asset->asset_id),'method' => 'delete','style' => 'display:inline')) !!}
+                {!! Form::open(array('route' => array('asset.destroy', $asset->id),'method' => 'delete','style' => 'display:inline')) !!}
                 <button class='btn btn-sm btn-danger delete-btn' type='submit'>
                   <i class='fa fa-times-circle'></i> Delete
                 </button>
