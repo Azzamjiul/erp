@@ -42,6 +42,25 @@ class AccountController extends Controller
         return $row>0 ? true : false;
     }
 
+    public function getAccountGroup(){
+        $id = 0;
+        $results = array();
+        $results = Account::where('parentId','=',$id)->get();
+        foreach($results as $result){
+            $result->text = $result->account_number.' - '.$result->account_name;
+        }
+        return json_encode($results);
+    }
+
+    public function getAccountDetail($id){
+        $results = array();
+        $results = Account::where('parentId','=',$id)->get();
+        foreach($results as $result){
+            $result->text = $result->account_number.' - '.$result->account_name;
+        }
+        return json_encode($results);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

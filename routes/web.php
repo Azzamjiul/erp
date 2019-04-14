@@ -31,6 +31,8 @@ Route::resource('supplier','SupplierController');
 // Account Routes
 Route::resource('account','AccountController');
 Route::get('getAccount', 'AccountController@getAccountList');
+Route::get('getAccountGroup', 'AccountController@getAccountGroup');
+Route::get('getAccountDetail/{id}', 'AccountController@getAccountDetail');
 
 // Purchasing Routes
 Route::resource('purchasing','PurchasingController');
