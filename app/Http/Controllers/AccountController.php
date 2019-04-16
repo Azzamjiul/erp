@@ -54,7 +54,7 @@ class AccountController extends Controller
 
     public function getAccountDetail($id){
         $results = array();
-        $results = Account::where('parentId','=',$id)->get();
+        $results = Account::where('parentId','=',$id)->orWhere('id','=',$id)->get();
         foreach($results as $result){
             $result->text = $result->account_number.' - '.$result->account_name;
         }
@@ -79,7 +79,9 @@ class AccountController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        Account::create($request->all());
+        // return redirect()->route('account.index');
+        return 1;
     }
 
     /**

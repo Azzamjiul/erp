@@ -21,8 +21,10 @@ class Product extends Model
     protected $fillable = [
         'id',
         'parentId',
-        'name',
-        'price',
-        'total'
+        'product_group',
+        'barcode',
+        'product_name',
+        'company_id',
+        'user_id'
     ];
 }

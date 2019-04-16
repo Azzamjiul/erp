@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<!-- <body>
+    <form action="submit.php" name="main" method="post">
+        <table style="border-collapse: collapse;" border="0" align="center" width="50%" class="horiz" id="customersAdd">
+        <tr>
+            <td align="center"><br/>
+            <input class="text" style="width:100%" type="button" id="addnew" align="middle" value="Add Aditional Row" /></td>
+        </tr>
+        </table>
+        <button type="submit">HOHO</button>
+    </form>
+</body> -->
+
+<body>
+        Qty1 : <input onblur="findTotal()" type="text" name="qty" id="qty1"/><br>
+        Qty2 : <input onblur="findTotal()" type="text" name="qty" id="qty2"/><br>
+        Qty3 : <input onblur="findTotal()" type="text" name="qty" id="qty3"/><br>
+        Qty4 : <input onblur="findTotal()" type="text" name="qty" id="qty4"/><br>
+        Qty5 : <input onblur="findTotal()" type="text" name="qty" id="qty5"/><br>
+        Qty6 : <input onblur="findTotal()" type="text" name="qty" id="qty6"/><br>
+        Qty7 : <input onblur="findTotal()" type="text" name="qty" id="qty7"/><br>
+        Qty8 : <input onblur="findTotal()" type="text" name="qty" id="qty8"/><br>
+        <br><br>
+        Total : <input type="text" name="total" id="total"/>
+        
+        
+            <script type="text/javascript">
+        function findTotal(){
+            var arr = document.getElementsByName('qty');
+            var tot=0;
+            for(var i=0;i<arr.length;i++){
+                if(parseInt(arr[i].value))
+                    tot += parseInt(arr[i].value);
+            }
+            document.getElementById('total').value = tot;
+        }
+        
+            </script>
+</body>
+
+<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+<!-- <script>
+var currentItem = 1;
+
+$('#customersAdd').on('keyup', '.quantity, .rate, .amount', calculateRow);
+$('#customersAdd').on('keyup', '.totalharga', change);
+
+$('#addnew').click(function() {
+    currentItem++;
+    
+    $('#customersAdd').append('<tr><td><input placeholder="Quantity" type="text" name="quantity' + currentItem +'" id="quantity' + currentItem +'" class="qty form-input-rate" /></td><td><input placeholder="Description" type="text" name="description' + currentItem +'" id="description' + currentItem +'" class="form-input-rate"/></td><td><input placeholder="Rate" type="text" name="rate' + currentItem +'" id="rate' + currentItem +'" class="rate form-input-rate"/></td><td><input placeholder="Amount" type="text" name="amount' + currentItem +'" id="amount' + currentItem +'" class="cal form-input-rate"/></td></tr>'
+    );
+});
+
+function calculateSum() {
+    var sum = 0;
+    $(".cal").each(function () {
+        if (!isNaN(this.value) && this.value.length != 0) {
+            sum += parseFloat(this.value);
+        }
+    });
+   
+}
+
+function calculateRow() {
+    var cost = 0;
+    var $row = $(this).closest("tr");
+    var qty = parseFloat($row.find('.qty').val());
+
+    // changed the following line to only look within the current row
+    var rate = parseFloat($row.find('.rate').val());
+
+    cost = qty * rate;
+
+    if (isNaN(cost)) {
+        $row.find('.cal').val("0");
+    } else {
+        $row.find('.cal').val(cost);
+    }
+    calculateSum();
+}
+</script> -->
+</html>

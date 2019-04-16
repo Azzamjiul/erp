@@ -19,16 +19,6 @@
             Tambah Supplier
           </button>
         </div>
-        <div class="box-tools">
-          <div class="input-group input-group-sm">
-            <input type="text" class="form-control pull-right" name="table_search" placeholder="search">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="box-body table-responsive no-padding">

@@ -32,9 +32,9 @@ class ProductController extends Controller
         foreach($results as $result){
             // dd('HERE');
             $result->state = $this->has_child($result->id) ? 'closed' : 'open';
-            if($result->quantity != NULL){
-                $result->total = $result->price * $result->quantity;
-            }
+            // if($result->quantity != NULL){
+            //     $result->total = $result->price * $result->quantity;
+            // }
         }
         return json_encode($results);
     }

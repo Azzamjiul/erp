@@ -46,6 +46,11 @@ Route::resource('inventory','InventoryController');
 // Product Routes
 Route::resource('product','ProductController');
 Route::get('getProduct', 'ProductController@getProductList');
+Route::get('getProductGroup', 'ProductController@getProductGroup');
+Route::get('getProductDetail/{id}', 'ProductController@getProductDetail');
 
 // Journal Routes
 Route::resource('journal','JournalController');
+
+// Purchasing
+Route::resource('purchase', 'PurchasingController');

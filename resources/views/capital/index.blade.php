@@ -20,9 +20,9 @@
         </div>
         <div class="box-tools">
           <div class="input-group input-group-sm">
-            <input type="text" class="form-control pull-right" name="table_search" placeholder="search">
+            <!-- <input type="text" class="form-control pull-right" name="table_search" placeholder="search"> -->
             <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
+              <!-- <button class="btn btn-default" type="submit"> -->
                 <i class="fa fa-search"></i>
               </button>
             </div>

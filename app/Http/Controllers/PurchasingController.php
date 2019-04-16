@@ -3,6 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+use App\Supplier;
+use App\Product;
+use App\Purchasing;
+use App\PurchasingDetail;
 
 class PurchasingController extends Controller
 {
@@ -23,7 +28,9 @@ class PurchasingController extends Controller
      */
     public function create()
     {
-        return view('purchasing.create');
+        $suppliers = Supplier::all();
+        $products = Product::where('parentId', '>', '0')->get();
+        return view('purchasing.create', compact('suppliers', 'products'));
     }
 
     /**
@@ -34,7 +41,18 @@ class PurchasingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $purchasing = new Purchasing;
+        // 'purchase_order_no',
+        // 'supplier_id',
+        // 'total',
+        // 'shipping_type',
+        // 'shipping_charge',
+        // 'company_id',
+        // 'user_id'
+        $date = Carbon::now();
+        $PO = 'PO'.$date->format('Y').$date->format('m').$date->format('d');
+        $supplier_id = $request->input('supplier_id');
+        die($PO);
     }
 
     /**

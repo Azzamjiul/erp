@@ -10,93 +10,170 @@
 
 @section('content')
 <div class="row">
-  <div class="col-xs-12">
-    <div class="box">
-      <div class="box-header">
-        {{-- <h3 class="box-title">Tambah Purchasing</h3> --}}
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-warning">
-            <a href="{{route('purchasing.index')}}" style="color:azure">Kembali</a>
-          </button>
+  <form action="{{route('purchase.store')}}" method="POST" id='tambahpembelian'>
+    @csrf
+    <div class="col-xs-12">
+
+      <div class="box">
+        <div class="box-header">
+          {{-- <h3 class="box-title">Tambah Purchasing</h3> --}}
+          <div class="input-group-btn">
+            <button type="button" class="btn btn-warning">
+              <a href="{{route('purchasing.index')}}" style="color:azure">Kembali</a>
+            </button>
+          </div>
+        </div>
+
+        <div class="box-body">
+            <div class="form-group">
+              <label for="">Supplier</label>
+              <select name="supplier_id" id="" class="form-control">
+                @foreach($suppliers as $supplier)
+                <option value="{{$supplier->id}}">{{$supplier->supplier_name}}</option>
+                @endforeach
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="">Jenis Ongkir</label>
+              <select name="shipping_type" id="" class="form-control">
+                <option value="1">Shipping Point</option>
+                <option value="2">Destination Point</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="">Besar Ongkos Kirim</label>
+              <input name="shipping_charge" type="text" class="form-control" name="">
+            </div>
+        </div>
+
+
+      </div>
+
+      <script>
+        var a = 1;
+        var test_qty = 0
+      </script>
+
+      <div class="box">
+        <div class="box-header">
+          <h3 class="box-title">Detail Pembelian</h3>
+        </div>
+
+        <div class="box-body">
+          <div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+            <div class="row">
+              <div class="col-sm-6"></div>
+              <div class="col-sm-6"></div>
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                <table id="table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                  <thead>
+                    <tr role="row">
+                      <th rowspan="1" colspan="1">Nama Barang</th>
+                      <th rowspan="1" colspan="1">Jumlah</th>
+                      <th rowspan="1" colspan="1">Harga Satuan</th>
+                      <th rowspan="1" colspan="1">Subtotal</th>
+                      <th rowspan="1" colspan="1">Actions</th>
+                    </tr>
+                  </thead>
+
+                  <tbody id="data">
+                    {{-- tambah data disini --}}
+                  </tbody>
+
+                  <tfoot>
+                    <th colspan="3" style="text-align:right;">Total</th>
+                    <th colspan="id">
+                      <input type='text' class='total form-control' id='total' disabled>
+                    </th>
+                  </tfoot>
+
+                </table>
+              </div>
+
+              <div align="center">
+                <a class="btn btn-primary" id="tambahdataclick">Tambah Data</a>
+                <button type="submit" class="btn btn-success">Send</button>
+              </div>
+
+            </div>
+          </div>
         </div>
       </div>
-
-      <div class="box-body">
-        <form action="">
-          @csrf
-
-          <div class="form-group">
-            <label for="">Supplier</label>
-            <select name="" id="" class="form-control">
-              <option value="">Supplier 1</option>
-              <option value="">Supplier 2</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="">Nama Barang</label>
-            <select name="" id="" class="form-control">
-              <option value="">Barang 1</option>
-              <option value="">Barang 2</option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <label for="">Jumlah Barang</label>
-            <input type="number" class="form-control" name="" id="" placeholder="Jumlah Barang">
-          </div>
-
-          <button class="btn btn-success">Add</button>
-
-        </form>
-      </div>
-
-      
-    </div>
-
-    <div class="box">
-      <div class="box-header">
-        <h3 class="box-title">Daftar Barang</h3>
-      </div>
-
-      <div class="box-body">
-        <table class="table table-hover">
-          <thead>
-            <th>Product Code</th>
-            <th>Nama Product</th>
-            <th>Harga Satuan</th>
-            <th>Quantity</th>
-            <th>Tax</th>
-            <th>Subtotal</th>
-          </thead>
-          <tbody>
-            <tr>
-              <td>89686041705-1</td>
-              <td>INDOMIE GORENG SPESIAL JUMBO</td>
-              <td>Rp 2.000</td>
-              <td>120</td>
-              <td>Rp 240.000</td>
-              <td>Rp 264.000</td>
-              <td></td>
-            </tr>
-          </tbody>
-          <tfoot>
-            <th colspan="5"></th>
-            <th> <button class="btn btn-primary">Submit</button> </th>
-          </tfoot>
-        </table>
-      </div>
-    </div>
-  </div>
+  </form>
 </div>
 @stop
 
 @section('css')
-<link rel="stylesheet" href="/css/admin_custom.css">
+  <link rel="stylesheet" href="/css/admin_custom.css">
 @stop
 
 @section('js')
-<script>
-  console.log('Hi!');
-</script>
+        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+        <script>
+          $('#table').on('keyup', '.unit_price, .quantity, .subtotal', calculateRow);
+          $('#table').on('keyup', '.unit_price, .quantity, .subtotal', hoho);
+
+          $('#tambahdataclick').click(function() {
+            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->barcode}}'>{{$product->product_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]' disabled> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger'>Hapus</button> </td></tr>");
+            a++;
+          });
+
+          // function change(){
+          //   console.log('hehehehe');
+          //   // fungsi untuk ngitungnya
+          //   var total_harga, temp=0, tambah;
+          //   for(var i=1;i<=a;i++){
+          //     tambah = $("#subtotalbarang"+i).val();
+          //     total_harga = temp + tambah;
+          //   }
+          //   $('#totalharga').val(total_harga);
+          //   // end
+          // }
+
+          function hoho(){
+            test_qty = 0;
+            $("input[name^='subtotal']").each(function() { 
+                test_qty +=parseInt($(this).val(), 10)  
+            })
+            $('#total').val(test_qty);
+          }
+      
+          function calculateSum() {
+              var sum = 0;
+              $(".cal").each(function () {
+                  if (!isNaN(this.value) && this.value.length != 0) {
+                      sum += parseFloat(this.value);
+                  }
+              });
+          }
+
+          function calculateRow() {
+              var cost = 0;
+              var $row = $(this).closest("tr");
+              var qty = parseFloat($row.find('.quantity').val());
+
+              // changed the following line to only look within the current row
+              var rate = parseFloat($row.find('.unit_price').val());
+
+              cost = qty * rate;
+
+              if (isNaN(cost)) {
+                  $row.find('.cal').val("0");
+              } else {
+                  $row.find('.cal').val(cost);
+              }
+              calculateSum();
+          }
+
+          function hapus(index) {
+            $("#table" + index).remove();
+          }
+
+        </script>
 @stop
+       

@@ -23,7 +23,7 @@ class SellingController extends Controller
      */
     public function create()
     {
-        return view('selling.create');
+        return view('selling.create-dynamic');
     }
 
     /**
