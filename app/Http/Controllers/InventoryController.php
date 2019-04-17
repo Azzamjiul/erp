@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use App\Inventory;
 
 class InventoryController extends Controller
 {
@@ -14,6 +16,24 @@ class InventoryController extends Controller
     public function index()
     {
         return view('inventory.index');
+    }
+
+    public function getInventory(Request $request)
+    {
+        $id = isset($request->id) ? $request->id : 0;
+        $results = array();
+        $results = Inventory::where('parentId','=',$id)->get();
+        foreach($results as $result){
+            $result->state = $this->has_child($result->id) ? 'closed' : 'open';
+            $result->text = $result->product_code.'  '.$result->inventory_item_name;
+        }
+        return json_encode($results);
+    }
+
+    public function has_child($id){
+        $rs = DB::select('select count(*) as jumlah from inventories where parentId='.$id);
+        $row = $rs[0]->jumlah;
+        return $row>0 ? true : false;
     }
 
     /**

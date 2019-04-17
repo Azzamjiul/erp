@@ -13,6 +13,9 @@
   <form action="{{route('purchase.store')}}" method="POST" id='tambahpembelian'>
     @csrf
     <div class="col-xs-12">
+    <input type='hidden' class='form-control' name='user_id' value="{{Auth::user()->id}}">
+    <input type='hidden' class='form-control' name='company_id' value="{{Auth::user()->company_id}}" >
+    <input type='hidden' class='form-control' name='banyak_barang' id="banyak_barang">
 
       <div class="box">
         <div class="box-header">
@@ -44,7 +47,7 @@
 
             <div class="form-group">
               <label for="">Besar Ongkos Kirim</label>
-              <input name="shipping_charge" type="text" class="form-control" name="">
+              <input name="shipping_charge" type="text" class="form-control" required>
             </div>
         </div>
 
@@ -52,7 +55,7 @@
       </div>
 
       <script>
-        var a = 1;
+        var a = 0;
         var test_qty = 0
       </script>
 
@@ -88,7 +91,8 @@
                   <tfoot>
                     <th colspan="3" style="text-align:right;">Total</th>
                     <th colspan="id">
-                      <input type='text' class='total form-control' id='total' disabled>
+                      <input type='text' class='total form-control' id='totaltampil' disabled>
+                      <input type='hidden' class='total form-control' name='totalharga' id="total">
                     </th>
                   </tfoot>
 
@@ -113,34 +117,24 @@
 @stop
 
 @section('js')
-        <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
-        <script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.3.1.min.js"></script>
+  <script>
           $('#table').on('keyup', '.unit_price, .quantity, .subtotal', calculateRow);
           $('#table').on('keyup', '.unit_price, .quantity, .subtotal', hoho);
 
           $('#tambahdataclick').click(function() {
-            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->barcode}}'>{{$product->product_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]' disabled> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger'>Hapus</button> </td></tr>");
+            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->barcode}}'>{{$product->product_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]'> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger'>Hapus</button> </td></tr>");
             a++;
           });
-
-          // function change(){
-          //   console.log('hehehehe');
-          //   // fungsi untuk ngitungnya
-          //   var total_harga, temp=0, tambah;
-          //   for(var i=1;i<=a;i++){
-          //     tambah = $("#subtotalbarang"+i).val();
-          //     total_harga = temp + tambah;
-          //   }
-          //   $('#totalharga').val(total_harga);
-          //   // end
-          // }
 
           function hoho(){
             test_qty = 0;
             $("input[name^='subtotal']").each(function() { 
                 test_qty +=parseInt($(this).val(), 10)  
             })
+            $('#totaltampil').val(1.1*test_qty);
             $('#total').val(test_qty);
+            $('#banyak_barang').val(a);
           }
       
           function calculateSum() {
@@ -174,6 +168,6 @@
             $("#table" + index).remove();
           }
 
-        </script>
+  </script>
 @stop
        

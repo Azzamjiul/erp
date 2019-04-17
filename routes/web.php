@@ -40,14 +40,15 @@ Route::resource('purchasing','PurchasingController');
 // Selling Routes
 Route::resource('selling','SellingController');
 
-// Inventory Routes
-Route::resource('inventory','InventoryController');
-
 // Product Routes
 Route::resource('product','ProductController');
 Route::get('getProduct', 'ProductController@getProductList');
 Route::get('getProductGroup', 'ProductController@getProductGroup');
 Route::get('getProductDetail/{id}', 'ProductController@getProductDetail');
+
+// Inventory Routes
+Route::resource('inventory','InventoryController');
+Route::get('getInventory', 'InventoryController@getInventory');
 
 // Journal Routes
 Route::resource('journal','JournalController');

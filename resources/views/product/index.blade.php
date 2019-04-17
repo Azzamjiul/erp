@@ -154,13 +154,13 @@
 
     <script type="text/javascript">
         $(document).ready(function() {
-                    function newAcc() {
+            function newAcc() {
                         $('#accForm').dialog('open').dialog('setTitle', 'New Account');
                         $('#form').form('clear');
                         url = '#';
-                    }
+            }
 
-                    function save() {
+            function save() {
                         jQuery('#form').form('submit', {
                             url: url,
                             onSubmit: function() {
@@ -185,99 +185,20 @@
                                 }
                             }
                         });
-                    }
-                };
-    </script>
-    @stop
-
-    @section('css')
-    <link rel="stylesheet" href="/css/admin_custom.css">
-    <link href="css/file-explore.css" rel="stylesheet">
-    <!-- Easy UI CSS -->
-    <link href="{{asset('vendor/jeasyui/themes/default/easyui.css')}}" rel="stylesheet">
-    <link href="{{asset('vendor/jeasyui/themes/icon.css')}}" rel="stylesheet">
-    @stop
-
-    @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-
-    <!-- Easy UI JS -->
-    <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
-    <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
-    <!-- <script type="text/javascript">
-    function newAccount(){
-        $('#dlg').dialog('open').dialog('setTitle','New Account');
-        $('#fm').form('clear');
-        url = 'save_user.php';
-    }
-
-    function saveAccount(){
-        $('#fm').form('submit',{
-            url: url,
-            onSubmit: function(){
-                return $(this).form('validate');
-            },
-            success: function(result){
-                var result = eval('('+result+')');
-                if (result.errorMsg){
-                    $.messager.show({
-                        title: 'Error',
-                        msg: result.errorMsg
-                    });
-                } else {
-                    $('#dlg').dialog('close');        // close the dialog
-                    $('#dg').datagrid('reload');    // reload the user data
-                }
             }
         });
-    }
+    </script>
+@stop
 
-    var row = $('#dg').datagrid('getSelected');
-    if (row){
-        $('#dlg').dialog('open').dialog('setTitle','Edit User');
-        $('#fm').form('load',row);
-        url = 'update_user.php?id='+row.id;
-    }
-</script> -->
-    @stop
-
-    @section('css')
+@section('css')
     <link rel="stylesheet" href="/css/admin_custom.css">
-    <link href="css/file-explore.css" rel="stylesheet">
     <!-- Easy UI CSS -->
     <link href="{{asset('vendor/jeasyui/themes/default/easyui.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/jeasyui/themes/icon.css')}}" rel="stylesheet">
-    @stop
+@stop
 
-    @section('js')
-    <script>
-        console.log('Hi!');
-    </script>
-
-    // file-exploler tree
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="js/file-explore.js"></script>
-    <script>
-        $(document).ready(function() {
-            $(".file-tree").filetree();
-        });
-
-        $(document).ready(function() {
-            $(".file-tree").filetree({
-                animationSpeed: 'fast'
-            });
-        });
-
-        $(document).ready(function() {
-            $(".file-tree").filetree({
-                collapsed: true,
-            });
-        });
-    </script>
-
+@section('js')
     <!-- Easy UI JS -->
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
-    @stop
+@stop
