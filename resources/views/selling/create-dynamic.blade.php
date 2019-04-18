@@ -19,10 +19,9 @@
 
       <div class="box">
         <div class="box-header">
-          {{-- <h3 class="box-title">Tambah Purchasing</h3> --}}
           <div class="input-group-btn">
             <button type="button" class="btn btn-warning">
-              <a href="{{route('purchasing.index')}}" style="color:azure">Kembali</a>
+              <a href="{{route('selling.index')}}" style="color:azure">Kembali</a>
             </button>
           </div>
         </div>
@@ -36,7 +35,7 @@
               </select>
             </div>
 
-            <div class="form-group">
+            <!-- <div class="form-group">
               <label for="">Jenis Ongkir</label>
               <select name="shipping_type" id="" class="form-control">
                 <option value="1">Shipping Point</option>
@@ -47,7 +46,7 @@
             <div class="form-group">
               <label for="">Besar Ongkos Kirim</label>
               <input name="shipping_charge" type="text" class="form-control" required>
-            </div>
+            </div> -->
         </div>
 
 
@@ -76,8 +75,8 @@
                   <thead>
                     <tr role="row">
                       <th rowspan="1" colspan="1">Nama Barang</th>
-                      <th rowspan="1" colspan="1">Jumlah</th>
                       <th rowspan="1" colspan="1">Harga Satuan</th>
+                      <th rowspan="1" colspan="1">Jumlah</th>
                       <th rowspan="1" colspan="1">Subtotal</th>
                       <th rowspan="1" colspan="1">Actions</th>
                     </tr>
@@ -89,7 +88,7 @@
 
                   <tfoot>
                     <th colspan="3" style="text-align:right;">Total</th>
-                    <th colspan="id">
+                    <th colspan="1">
                       <input type='text' class='total form-control' id='totaltampil' disabled>
                       <input type='hidden' class='total form-control' name='totalharga' id="total">
                     </th>
@@ -122,9 +121,37 @@
           $('#table').on('keyup', '.unit_price, .quantity, .subtotal', hoho);
 
           $('#tambahdataclick').click(function() {
-            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select class='form-control' name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->product_code}}'>{{$product->product_code}} - {{$product->inventory_item_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]'> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger'>Hapus</button> </td></tr>");
+            $("#table").append(`
+            <tr role='row' id='table` + a + `'> 
+              <td> 
+                <select id='select` + a + `' onChange="getHarga('select` + a + `','hargabarang` + a + `')" class='form-control' name='product_code[]'>
+                  <option>Pilih Barang</option>
+                @foreach($products as $product) 
+                  <option value='{{$product->product_code}}-{{$product->inventory_item_sale_price}}'>{{$product->product_code}} - {{$product->inventory_item_name}}</option> 
+                @endforeach 
+                </select>
+              </td>
+              <td> 
+                <input required type='text' class='unit_price form-control' id='hargabarang`+ a +`' name='unit_price[]'>
+              </td> 
+              <td> 
+                <input required type='text' class='quantity form-control' id='jumlahbarang`+ a +`' name='quantity[]'>
+              </td> 
+              <td> 
+                <input type='text' class='cal subtotal form-control' id='subtotalbarang`+ a +`' name='subtotal[]'> 
+              </td> 
+              <td>
+                <button onClick='hapus(` + a + `)' class='btn btn-xs btn-danger'>Hapus</button>
+              </td>
+            </tr>`);
             a++;
           });
+
+          function getHarga(select,field){
+            console.log(select);
+            let value = $('#'+select).val().split('-')[1];
+            $('#'+field).val(value);
+          }
 
           function hoho(){
             test_qty = 0;
@@ -132,6 +159,7 @@
                 test_qty +=parseInt($(this).val(), 10)  
             })
             $('#totaltampil').val(1.1*test_qty);
+            console.log(test_qty);
             $('#total').val(test_qty);
             $('#banyak_barang').val(a);
           }

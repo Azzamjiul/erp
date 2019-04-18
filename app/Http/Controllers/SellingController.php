@@ -8,7 +8,8 @@ use DB;
 use App\Inventory;
 use App\Product;
 use App\Selling;
-use App\SellingDetail
+use App\SellingDetail;
+use App\Journal;
 
 class SellingController extends Controller
 {
@@ -19,7 +20,8 @@ class SellingController extends Controller
      */
     public function index()
     {
-        return view('selling.index');
+        $sales = Selling::all();
+        return view('selling.index', compact('sales'));
     }
 
     /**
@@ -53,7 +55,8 @@ class SellingController extends Controller
             $urut = ($tgl * 10000) + $akhiran;
             $SO = 'SO'.$urut;
             $customer_id = $request->customer_id;
-            $total = $request->totalHarga;
+            $total = $request->totalharga;
+            $ppn_keluaran = $total * 0.1;
             $courier = NULL;
             $delivery_date = $date;
             $shipping_type = NULL;
@@ -74,31 +77,24 @@ class SellingController extends Controller
             Selling::create($selling);
 
             //masukin table selling_detail
-            // 'sales_order_no',
-            // 'sales_order_no_detail',
-            // 'product_code',
-            // 'quantity',
-            // 'unit_price',
-            // 'subtotal',
-            // 'tax',
-            // 'total',
-            // 'company_id',
-            // 'user_id'
             $banyak_barang = $request->input('banyak_barang');
 
             for($i=0;$i<$banyak_barang;$i++){
                
-                $PO_detail = $PO.$i;
-                $item_barcode = $request->item_barcode[$i];
+                $SO_detail = 'SO'.(($urut*1000)+$i);
+                $product_code = explode('-',$request->product_code[$i])[0];
+                $inventory = Inventory::where('product_code','=',$product_code)->get();
                 $quantity = $request->quantity[$i];
-                $unit_price = $request->unit_price[$i];
+                $harga_beli = $inventory[0]->inventory_item_purchase_price;
+                $hpp = $harga_beli * $quantity;
+                $unit_price = $request->unit_price[$i]; //harga jual
                 $subtotal = $request->subtotal[$i];
                 $tax = 0.1 * $subtotal;
 
-                $purchasing_detail = [
-                    'purchase_order_no' => $PO,
-                    'purchase_order_no_detail'=> $PO_detail,
-                    'item_barcode' => $item_barcode,
+                $selling_detail = [
+                    'sales_order_no' => $SO,
+                    'sales_order_no_detail'=> $SO_detail,
+                    'product_code' => $product_code,
                     'quantity' => $quantity,
                     'unit_price' => $unit_price,
                     'subtotal' => $subtotal,
@@ -107,17 +103,110 @@ class SellingController extends Controller
                     'user_id' => $request->user_id
                 ];
                 
-                PurchasingDetail::create($purchasing_detail);
+                SellingDetail::create($selling_detail);
             }
 
             // masukin journal
+            $tgl = $date->format('Y').$date->format('m').$date->format('d');
+            $banyak_jurnal_hari_ini = Journal::where('date','=',$date->format('Y-m-d'))->count();
+            $urutan_journal = ($tgl * 10000) + $banyak_jurnal_hari_ini + 1;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => 'Harga Pokok Penjualan',
+                'line_credit_name' => NULL,
+                'account_number' =>'5-10001',
+                'line_debit' => $hpp,
+                'line_credit' => NULL
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => NULL,
+                'line_credit_name' => 'Persediaan Barang Dagangan',
+                'account_number' =>'1-10201',
+                'line_debit' => NULL,
+                'line_credit' => $total
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => 'Kas',
+                'line_credit_name' => NULL,
+                'account_number' =>'1-10001',
+                'line_debit' => $total + $shipping_charge + $ppn_keluaran,
+                'line_credit' => NULL
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => NULL,
+                'line_credit_name' => 'PPN Keluaran',
+                'account_number' =>'2-10103',
+                'line_debit' => NULL,
+                'line_credit' => $ppn_keluaran
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => NULL,
+                'line_credit_name' => 'Diskon Penjualan',
+                'account_number' =>'4-10102',
+                'line_debit' => NULL,
+                'line_credit' => 0
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+            $journal = [
+                'date' => $date,
+                'journal_id' => $journal_id,
+                'line_debit_name' => NULL,
+                'line_credit_name' => 'Pendapatan Penjualan',
+                'account_number' =>'4-10101',
+                'line_debit' => NULL,
+                'line_credit' => $total - $hpp
+            ];
+            Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
+
+
             // masukin inventory
+            for($i=0;$i<$banyak_barang;$i++){
+                $product_code = explode('-',$request->product_code[$i])[0];
+                $inventory = Inventory::where('product_code','=',$product_code)->get();
+                $quantity = $request->quantity[$i];
+                $stok_lama = $inventory[0]->inventory_item_stock;
+                $inventory[0]->update([
+                    'inventory_item_stock' => $stok_lama - $quantity
+                ]);
+            }
 
             DB::commit();
-            return redirect()->route('purchasing.index')->with('message','Penjualan Berhasil');
+            return redirect()->route('selling.index')->with('message','Penjualan Berhasil');
         }catch (Exception $e) {
             DB::rollback();
-            return redirect()->route('purchasing.index')->with('message','Penjualan Gagal');
+            return redirect()->route('selling.index')->with('message','Penjualan Gagal');
         }
     }
 
@@ -127,9 +216,13 @@ class SellingController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($sales_order_no)
     {
-        return view('selling.show');
+        $sale_details = DB::table('selling_detail')
+            ->join('inventories', 'selling_detail.product_code', '=', 'inventories.product_code')
+            ->where('selling_detail.sales_order_no','=',$sales_order_no)
+            ->get();
+        return view('selling.show', compact('sale_details'));
     }
 
     /**

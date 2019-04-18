@@ -26,7 +26,6 @@
           <thead>
             <th>No Penjualan</th>
             <th>No Detail</th>
-            <th>Customer</th>
             <th>Product Code</th>
             <th>Product Name</th>
             <th>Quantity</th>
@@ -37,30 +36,19 @@
           </thead>
 
           <tbody>
+          @foreach($sale_details as $sale_detail)
             <tr>
-                <td>PO201904041</td>
-                <td>PO2019040410001</td>
-                <td>Customer 1</td>
-                <td>89686041705-1</td>
-                <td>INDOMIE GORENG SPESIAL JUMBO</td>
-                <td>120</td>
-                <td>Rp 3.500</td>
-                <td>Rp 420.000</td>
-                <td>Rp 42.000</td>
-                <td>Rp 462.000</td>
+                <td>{{$sale_detail->sales_order_no}}</td>
+                <td>{{$sale_detail->sales_order_no_detail}}</td>
+                <td>{{$sale_detail->product_code}}</td>
+                <td>{{$sale_detail->inventory_item_name}}</td>
+                <td>{{$sale_detail->quantity}}</td>
+                <td>{{$sale_detail->unit_price}}</td>
+                <td>{{$sale_detail->subtotal}}</td>
+                <td>{{$sale_detail->subtotal*0.1}}</td>
+                <td>{{$sale_detail->subtotal*1.1}}</td>
             </tr>
-            <tr>
-                <td>PO201904042</td>
-                <td>PO2019040410001</td>
-                <td>Customer 1</td>
-                <td>89686011982-1</td>
-                <td>INDOMIE GORENG VEGAN 5'S</td>
-                <td>100</td>
-                <td>Rp 3.000</td>
-                <td>Rp 300.000</td>
-                <td>Rp 30.000</td>
-                <td>Rp 330.000</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>

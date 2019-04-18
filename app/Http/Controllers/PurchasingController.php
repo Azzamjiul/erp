@@ -50,16 +50,16 @@ class PurchasingController extends Controller
             //  masukin ke tabel purchasing
             $date = Carbon::now();
             $tgl = $date->format('Y').$date->format('m').$date->format('d');
-            $akhir = Purchasing::all();
+            $akhir = Purchasing::where('created_at','=',$date->toDateTimeString());
             $akhiran = count($akhir) + 1;
-            $urut = ($tgl * 1000) + $akhiran;
+            $urut = ($tgl * 10000) + $akhiran;
             $PO = 'PO'.$urut;
             $supplier_id = $request->input('supplier_id');
             $total = $request->input('totalharga');
             $ppn_masukan = $total * 0.1;
             $shipping_type = $request->input('shipping_type');
             $shipping_charge = $request->input('shipping_charge');
-            
+
             $purchasing = [
                 'purchase_order_no' => $PO,
                 'supplier_id' => $supplier_id,
@@ -100,9 +100,14 @@ class PurchasingController extends Controller
             }
 
             // masukin journal
+            $tgl = $date->format('Y').$date->format('m').$date->format('d');
+            $banyak_jurnal_hari_ini = Journal::where('date','=',$date->format('Y-m-d'))->count();
+            $urutan_journal = ($tgl * 10000) + $banyak_jurnal_hari_ini + 1;
+            $journal_id = 'J'.$urutan_journal;
             //masukin debit
             $journal = [
-                'date' => $date,
+                'date' => $date->format('Y-m-d'),
+                'journal_id' => $journal_id,
                 'line_debit_name' => 'Persediaan Barang Dagangan',
                 'line_credit_name' => NULL,
                 'account_number' =>'1-10201',
@@ -110,9 +115,12 @@ class PurchasingController extends Controller
                 'line_credit' => NULL
             ];
             Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
 
             $journal = [
                 'date' => $date,
+                'journal_id' => $journal_id,
                 'line_debit_name' => 'Beban Angkut Pembelian',
                 'line_credit_name' => NULL,
                 'account_number' =>'5-10002',
@@ -120,19 +128,25 @@ class PurchasingController extends Controller
                 'line_credit' => NULL
             ];
             Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
 
             $journal = [
                 'date' => $date,
-                'line_debit_name' => 'PPN Keluaran',
+                'journal_id' => $journal_id,
+                'line_debit_name' => 'PPN Masukan',
                 'line_credit_name' => NULL,
-                'account_number' =>'2-10103',
+                'account_number' =>'1-10301',
                 'line_debit' => $ppn_masukan,
                 'line_credit' => NULL
             ];
             Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
             
             $journal = [
                 'date' => $date,
+                'journal_id' => $journal_id,
                 'line_debit_name' => NULL,
                 'line_credit_name' => 'Kas',
                 'account_number' =>'1-10001',
@@ -140,6 +154,8 @@ class PurchasingController extends Controller
                 'line_credit' => $total + $shipping_charge + $ppn_masukan
             ];
             Journal::create($journal);
+            $urutan_journal++;
+            $journal_id = 'J'.$urutan_journal;
 
             // masukin inventory
             for($i=0;$i<$banyak_barang;$i++){
@@ -176,11 +192,11 @@ class PurchasingController extends Controller
                 }else{
                     $inventory = Inventory::where('product_code','=',$product_code)->get();
                     die($inventory);
-                    $harga_beli_lama = $inventory->inventory_item_purchase_price;
-                    $stok_lama = $inventory->inventory_item_stock;
+                    $harga_beli_lama = $inventory[0]->inventory_item_purchase_price;
+                    $stok_lama = $inventory[0]->inventory_item_stock;
                     $inventory_item_purchase_price= $request->unit_price[$i];
                     $inventory_item_stock = $request->quantity[$i];
-                    $inventory->update([
+                    $inventory[0]->update([
                         'inventory_item_purchase_price' => (($stok_lama*$harga_beli_lama)+($inventory_item_purchase_price*$inventory_item_stock))/($stok_lama+$inventory_item_stock),
                         'inventory_item_stock' => $inventory_item_stock + $stok_lama
                     ]);

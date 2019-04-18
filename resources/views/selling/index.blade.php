@@ -37,16 +37,18 @@
           </thead>
 
           <tbody>
+          @foreach($sales as $sale)
             <tr>
-              <td>04 April 2019</td>
-              <td>SO201904041</td>
-              <td>Customer 1</td>
-              <td>Casheer 1</td>
-              <td>Rp 720.000</td>
+              <td>{{$sale->created_at->format('d-m-Y')}}</td>
+              <td>S{{$sale->sales_order_no}}</td>
+              <td>{{$sale->customer_id}}</td>
+              <td>{{$sale->user_id}}</td>
+              <td>{{$sale->total}}</td>
               <td>10%</td>
-              <td>Rp 792.000</td>
-              <td><a class="btn btn-primary" href="{{ route('selling.show',1) }}"><i class="fa fa-eye"></i></a></td>
+              <td>{{$sale->total*1.1}}</td>
+              <td><a class="btn btn-primary" href="{{ route('selling.show',$sale->sales_order_no) }}"><i class="fa fa-eye"></i></a></td>
             </tr>
+          @endforeach
           </tbody>
         </table>
       </div>

@@ -10,6 +10,7 @@ class Journal extends Model
 
     protected $fillable = [
         'date',
+        'journal_id',
         'line_debit_name',
         'line_credit_name',
         'account_number',

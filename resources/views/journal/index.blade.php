@@ -18,16 +18,6 @@
             Tambah Jurnal
           </button>
         </div>
-        <div class="box-tools">
-          <div class="input-group input-group-sm">
-            <input type="text" class="form-control pull-right" name="table_search" placeholder="search">
-            <div class="input-group-btn">
-              <button class="btn btn-default" type="submit">
-                <i class="fa fa-search"></i>
-              </button>
-            </div>
-          </div>
-        </div>
       </div>
 
       <div class="box-body table-responsive">
@@ -43,42 +33,17 @@
           </thead>
 
           <tbody>
+          @foreach($journals as $journal)
             <tr>
-              <td>04 April 2019</td>
-              <td>J201904040000001</td>
-              <td>Persediaan Barang Dagangan</td>
-              <td></td>
-              <td>1-10201</td>
-              <td>Rp 720.000</td>
-              <td></td>
+              <td>{{$journal->date}}</td>
+              <td>{{$journal->journal_id}}</td>
+              <td>{{$journal->line_debit_name}}</td>
+              <td>{{$journal->line_credit_name}}</td>
+              <td>{{$journal->account_number}}</td>
+              <td>{{$journal->line_debit}}</td>
+              <td>{{$journal->line_credit}}</td>
             </tr>
-            <tr>
-              <td></td>
-              <td>J201904040000002</td>
-              <td>Beban Angkut Pembelian</td>
-              <td></td>
-              <td>5-10002</td>
-              <td>Rp 0</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>J201904040000003</td>
-              <td>PPN Masukan</td>
-              <td></td>
-              <td>1-10301</td>
-              <td>Rp 72.000</td>
-              <td></td>
-            </tr>
-            <tr>
-              <td></td>
-              <td>J201904040000004</td>
-              <td></td>
-              <td>Kas</td>
-              <td>1-10001</td>
-              <td></td>
-              <td>Rp 792.000</td>
-            </tr>
+          @endforeach
           </tbody>
         </table>
       </div>
