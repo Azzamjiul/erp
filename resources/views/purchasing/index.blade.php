@@ -14,6 +14,9 @@
     <div class="box">
       <div class="box-header">
         {{-- <h3 class="box-title">Daftar Purchasing</h3> --}}
+        @if(Session::has('message'))
+          <p class="alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('message') }}</p>
+        @endif
         <div class="input-group-btn">
           <a href="{{route('purchasing.create')}}" >
             <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
@@ -29,18 +32,18 @@
             <th>Tanggal</th>
             <th>No Pembelian</th>
             <th>Total</th>
-            <th>Status</th>
             <th>Action</th>
           </thead>
 
           <tbody>
+            @foreach($datas as $data)
             <tr>
-              <td>04 April 2019</td>
-              <td>PO201904041</td>
-              <td>Rp 264.000</td>
-              <td><label for="" class="label label-success">Complete</label></td>
-              <td><a class="btn btn-primary" href="{{ route('purchasing.show',1) }}"><i class="fa fa-eye"></i></a></td>
+              <td colspan="1">{{$data->created_at->format('d-m-Y')}}</td>
+              <td colspan="1">{{$data->purchase_order_no}}</td>
+              <td colspan="1">{{1.1*$data->total}}</td>
+              <td colspan="1"><a class="btn btn-primary" href="{{route('purchasing.show',$data->purchase_order_no)}}">Detail</a></td>
             </tr>
+            @endforeach
           </tbody>
         </table>
       </div>

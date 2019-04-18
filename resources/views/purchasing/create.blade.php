@@ -10,7 +10,7 @@
 
 @section('content')
 <div class="row">
-  <form action="{{route('purchase.store')}}" method="POST" id='tambahpembelian'>
+  <form action="{{route('purchasing.store')}}" method="POST" id='tambahpembelian'>
     @csrf
     <div class="col-xs-12">
     <input type='hidden' class='form-control' name='user_id' value="{{Auth::user()->id}}">

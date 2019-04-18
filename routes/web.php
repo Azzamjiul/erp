@@ -52,6 +52,3 @@ Route::get('getInventory', 'InventoryController@getInventory');
 
 // Journal Routes
 Route::resource('journal','JournalController');
-
-// Purchasing
-Route::resource('purchase', 'PurchasingController');

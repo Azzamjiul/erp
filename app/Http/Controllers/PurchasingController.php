@@ -21,7 +21,8 @@ class PurchasingController extends Controller
      */
     public function index()
     {
-        return view('purchasing.index');
+        $datas = Purchasing::all();
+        return view('purchasing.index', compact('datas'));
     }
 
     /**
@@ -48,14 +49,17 @@ class PurchasingController extends Controller
         try{
             //  masukin ke tabel purchasing
             $date = Carbon::now();
-            $PO = 'PO'.$date->format('Y').$date->format('m').$date->format('d');
+            $tgl = $date->format('Y').$date->format('m').$date->format('d');
+            $akhir = Purchasing::all();
+            $akhiran = count($akhir) + 1;
+            $urut = ($tgl * 1000) + $akhiran;
+            $PO = 'PO'.$urut;
             $supplier_id = $request->input('supplier_id');
             $total = $request->input('totalharga');
             $ppn_masukan = $total * 0.1;
             $shipping_type = $request->input('shipping_type');
             $shipping_charge = $request->input('shipping_charge');
-
-            // $purchasing = new Purchasing;
+            
             $purchasing = [
                 'purchase_order_no' => $PO,
                 'supplier_id' => $supplier_id,
@@ -184,8 +188,10 @@ class PurchasingController extends Controller
             }
 
             DB::commit();
+            return redirect()->route('purchasing.index')->with('message','Pembelian Berhasil');
         }catch (Exception $e) {
             DB::rollback();
+            return redirect()->route('purchasing.index')->with('message','Pembelian Gagal');
         }
     }
 
@@ -196,9 +202,14 @@ class PurchasingController extends Controller
      * @return \Illuminate\Http\Response
      */
     // public function show($id)
-    public function show()
+    public function show($purchase_order_no)
     {
-        return view('purchasing.show');
+        // $purchases = PurchasingDetail::where('purchase_order_no','=',$purchase_order_no)->get();
+        $purchases = DB::table('purchasing_detail')
+            ->join('products', 'purchasing_detail.item_barcode', '=', 'products.barcode')
+            ->where('purchasing_detail.purchase_order_no','=',$purchase_order_no)
+            ->get();
+        return view('purchasing.show', compact('purchases'));
     }
 
     /**
