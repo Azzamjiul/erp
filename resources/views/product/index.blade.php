@@ -81,7 +81,6 @@
     <div class="col-xs-12 col-lg-12">
         <div class="box">
             <div class="box-body table-responsive no-padding">
-                <p id="judul"></p>
                 <table id="laporan" class="easyui-treegrid" style="width:auto;height:450px" url="getProduct" toolbar="#toolbar" method="get" idField="id" treeField="product_name" rownumbers="true" fitColumns="true">
                     <thead>
                         <tr>

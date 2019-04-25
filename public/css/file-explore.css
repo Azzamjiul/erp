@@ -63,3 +63,13 @@ li.folder-root.open>ul{
    display:block;
    max-height:1000px;
 }
+
+#tableInventory{
+    margin-left:20px;
+}
+
+@media screen and (max-width:800px){
+    #tableInventory{
+        margin-left:0px;
+    }
+}

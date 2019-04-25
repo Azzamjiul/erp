@@ -13,13 +13,7 @@
   <div class="col-xs-12">
     <div class="box">
       <div class="box-header">
-        {{-- <h3 class="box-title">Daftar Asset</h3> --}}
-        <div class="input-group-btn">
-          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
-            Tambah Asset
-          </button>
-        </div>
-        <div class="box-tools">
+        <div class="x" style="display:block;">
           <div class="input-group input-group-sm">
             <input type="text" class="form-control pull-right" name="table_search" placeholder="search">
             <div class="input-group-btn">
@@ -28,6 +22,15 @@
               </button>
             </div>
           </div>
+        </div>
+        <br>
+        <br>
+        <h3 class="box-title" style="display:block;">Daftar Asset</h3>
+        <br>
+        <div class="input-group-btn" style="display:block;">
+          <button type="button" class="btn btn-success" data-toggle="modal" data-target="#modal-default">
+            Tambah Asset
+          </button>
         </div>
       </div>
 
