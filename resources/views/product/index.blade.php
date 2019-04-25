@@ -80,6 +80,11 @@
 <div class="row">
     <div class="col-xs-12 col-lg-12">
         <div class="box">
+            <div id="toolbar">
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()">Add Product</a>
+                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editComp()">Edit Company</a> -->
+                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove Company</a> -->
+            </div>
             <div class="box-body table-responsive no-padding">
                 <table id="laporan" class="easyui-treegrid" style="width:auto;height:450px" url="getProduct" toolbar="#toolbar" method="get" idField="id" treeField="product_name" rownumbers="true" fitColumns="true">
                     <thead>
@@ -88,59 +93,6 @@
                         </tr>
                     </thead>
                 </table>
-                <div id="toolbar">
-                    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()">Add Product</a>
-                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editComp()">Edit Company</a> -->
-                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove Company</a> -->
-                </div>
-
-                <!-- add account -->
-                <div id="accForm" class="easyui-dialog" style="width:50%; height:auto; padding: 10px 20px" closed="true" buttons="#dialog-buttons">
-                    <form id="form" method="post" novalidate>
-                        <div class="form-item">
-                            <label for="acc_group" style="font-size: 16px; margin-top: 10px">Account Group</label><br />
-                            <input class="easyui-combobox" name="acc_group" data-options="
-                            valueField:'account_number', 
-                            textField:'text', 
-                            url:'getAccountGroup', 
-                            panelHeight:'auto', 
-                            editable:false, 
-                            onSelect: function(rec){
-                              var url = 'getAccountDetail/'+rec.account_number;
-                              $('#acc_parent').combobox('reload', url);
-                            }" required="true" style="width:100%;" method="get" />
-                        </div>
-                        <div class="form-item">
-                            <label for="acc_parent" style="font-size: 16px; margin-top: 10px">Account Parent</label><br />
-                            <input id="acc_parent" class="easyui-combobox" name="acc_parent" data-options="
-                            valueField:'account_number', 
-                            textField:'text', 
-                            panelHeight:'auto', 
-                            editable:false,
-                            onSelect: function(rec){
-                              $('#acc_code1').textbox('setValue', rec.account_number);
-                            }" required="true" style="width:100%;" method="get" />
-                        </div>
-                        <div class="form-item">
-                            <label for="type" style="font-size: 16px; margin-top: 10px">Account Code</label><br />
-                            <input id="acc_code1" type="text" name="acc_code1" class="easyui-textbox" required="true" maxlength="50" readonly="true" />
-                            <input id="acc_code2" type="text" name="acc_code2" class="easyui-numerbox" required="true" maxlength="50" />
-                        </div>
-                        <div class="form-item">
-                            <label for="type" style="font-size: 16px; margin-top: 10px">Account Name</label><br />
-                            <input type="text" name="acc_name" class="easyui-validatebox" required="true" style="width:100%;" maxlength="50" />
-                        </div>
-                    </form>
-                </div>
-
-                <!-- Dialog Button -->
-                <div id="dialog-buttons">
-                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-ok" onclick="save()">Save</a>
-                    <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:jQuery('#accForm').dialog('close')">Cancel</a>
-                </div>
-
-                <!-- Dialog Button -->
-
             </div><!-- /.box-body -->
         </div><!-- /.box -->
         <div class="row">
