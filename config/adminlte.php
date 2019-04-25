@@ -182,12 +182,12 @@ return [
             'icon'    => 'book',
             'submenu' => [
                 [
-                    'text' => 'Balance Sheet',
-                    'url'  => '/balancesheet',
-                ],
-                [
                     'text'    => 'Income Statement',
                     'url'     => '/incomestatement',
+                ],
+                [
+                    'text' => 'Balance Sheet',
+                    'url'  => '/balancesheet',
                 ],
                 [
                     'text'    => 'Cashflowç',

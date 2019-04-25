@@ -55,7 +55,7 @@
         <div class="box">
             <div class="box-body table-responsive no-padding">
                 <p id="judul"></p>
-                <table id="dg" class="easyui-treegrid" style="width:auto;height:450px" url="getAccount" toolbar="#toolbar" method="get" idField="id" treeField="account_number" rownumbers="true" fitColumns="true">
+                <table id="dg" class="easyui-treegrid" style="width:auto;height:auto" url="getAccount" toolbar="#toolbar" method="get" idField="id" treeField="account_number" rownumbers="true" fitColumns="true">
                     <thead>
                         <tr>
                             <th field="account_number" width="50">Akun</th>
