@@ -132,7 +132,7 @@ class SellingController extends Controller
                 'line_credit_name' => 'Persediaan Barang Dagangan',
                 'account_number' =>'1-10201',
                 'line_debit' => NULL,
-                'line_credit' => $total
+                'line_credit' => $hpp
             ];
             Journal::create($journal);
             $urutan_journal++;
@@ -167,11 +167,11 @@ class SellingController extends Controller
             $journal = [
                 'date' => $date,
                 'journal_id' => $journal_id,
-                'line_debit_name' => NULL,
-                'line_credit_name' => 'Diskon Penjualan',
+                'line_debit_name' => 'Diskon Penjualan',
+                'line_credit_name' => NULL,
                 'account_number' =>'4-10102',
-                'line_debit' => NULL,
-                'line_credit' => 0
+                'line_debit' => 0,
+                'line_credit' => NULL
             ];
             Journal::create($journal);
             $urutan_journal++;
@@ -184,7 +184,7 @@ class SellingController extends Controller
                 'line_credit_name' => 'Pendapatan Penjualan',
                 'account_number' =>'4-10101',
                 'line_debit' => NULL,
-                'line_credit' => $total - $hpp
+                'line_credit' => $total
             ];
             Journal::create($journal);
             $urutan_journal++;

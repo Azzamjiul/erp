@@ -15,7 +15,33 @@ class IncomeStatementController extends Controller
      */
     public function index()
     {
-        //
+        $pendapatan_array = DB::table('journal')
+        ->select(DB::raw('gl_account.account_name, sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->join('gl_account', 'journal.account_number','=','gl_account.account_number')
+        ->where('journal.account_number','like','4-%')
+        ->groupBy('gl_account.account_name')
+        ->get();
+
+        $pendapatan_total = DB::table('journal')
+        ->select(DB::raw('sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->where('journal.account_number','like','4-%')
+        ->get();
+
+        $beban_array = DB::table('journal')
+        ->select(DB::raw('gl_account.account_name, sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->join('gl_account', 'journal.account_number','=','gl_account.account_number')
+        ->where('journal.account_number','like','5-%')
+        ->groupBy('gl_account.account_name')
+        ->get();
+
+        $beban_total = DB::table('journal')
+        ->select(DB::raw('sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->where('journal.account_number','like','5-%')
+        ->get();
+
+        // die($pendapatan_total);
+
+        return view('laporan.income_statement', compact('pendapatan_array','beban_array','pendapatan_total','beban_total'));
     }
 
     /**
@@ -47,7 +73,7 @@ class IncomeStatementController extends Controller
      */
     public function show($id)
     {
-        $pendapatan = Journal::all();
+        
     }
 
     /**

@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('home');
-});
+})->middleware('auth');
 
 Auth::routes();
 
@@ -52,3 +52,6 @@ Route::get('getInventory', 'InventoryController@getInventory');
 
 // Journal Routes
 Route::resource('journal','JournalController');
+
+// Income Statement
+Route::resource('ic', 'IncomeStatementController');
