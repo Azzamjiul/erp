@@ -50,23 +50,21 @@
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="row">
-    <div class="col-xs-12 col-lg-12">
-        <div class="box">
             <div class="box-body table-responsive no-padding">
                 <p id="judul"></p>
-                <table id="dg" class="easyui-treegrid" style="width:auto;height:auto" url="getAccount" toolbar="#toolbar" method="get" idField="id" treeField="account_number" rownumbers="true" fitColumns="true">
+                <table id="dg" class="easyui-treegrid" style="width:100%;height:auto" url="getAccount" toolbar="#toolbar" method="get" idField="id" treeField="account_number" rownumbers="true" fitColumns="true">
                     <thead>
                         <tr>
-                            <th field="account_number" width="50">Akun</th>
-                            <th field="account_name" width="50">Nama</th>
+                            <th field="account_number" width=""
+                            style="display:block;" 
+                            id="namaProduk">Akun</th>
+                            <th field="account_name" width="auto">Nama</th>
                         </tr>
                     </thead>
                 </table>
                 <div id="toolbar">
                     <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()">New Account</a>
                     <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editAcc()">Edit Account</a>
-                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove Company</a> -->
                 </div>
 
                 <!-- add account -->
@@ -120,14 +118,6 @@
                 <!-- Dialog Button -->
 
             </div><!-- /.box-body -->
-        </div><!-- /.box -->
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <?php
-                ?>
-            </div>
-        </div>
-    </div>
 @stop
 
 @section('css')
@@ -146,6 +136,8 @@
     <!-- Easy UI JS -->
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
+    <script type="text/javascript" src="js/screen.js"></script>
+
     <script type="text/javascript">
         function newAcc() {
             $('#accForm').dialog('open').dialog('setTitle', 'New Account');
