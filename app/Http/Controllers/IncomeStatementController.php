@@ -27,23 +27,33 @@ class IncomeStatementController extends Controller
         ->where('journal.account_number','like','4-%')
         ->get();
 
-        $beban_array = DB::table('journal')
+        $hpp_array = DB::table('journal')
         ->select(DB::raw('gl_account.account_name, sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
         ->join('gl_account', 'journal.account_number','=','gl_account.account_number')
         ->where('journal.account_number','like','5-%')
-        ->whereOr('journal.account_number','like','6-%')
+        ->groupBy('gl_account.account_name')
+        ->get();
+
+        $hpp_total = DB::table('journal')
+        ->select(DB::raw('sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->where('journal.account_number','like','5-%')
+        ->get();
+
+        $beban_array = DB::table('journal')
+        ->select(DB::raw('gl_account.account_name, sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
+        ->join('gl_account', 'journal.account_number','=','gl_account.account_number')
+        ->where('journal.account_number','like','6-%')
         ->groupBy('gl_account.account_name')
         ->get();
 
         $beban_total = DB::table('journal')
         ->select(DB::raw('sum(line_credit) as total_kredit, sum(line_debit) as total_debit'))
-        ->where('journal.account_number','like','5-%')
-        ->whereOr('journal.account_number','like','6-%')
+        ->where('journal.account_number','like','6-%')
         ->get();
 
         // die($pendapatan_array);
 
-        return view('laporan.income_statement', compact('pendapatan_array','beban_array','pendapatan_total','beban_total'));
+        return view('laporan.income_statement', compact('pendapatan_array','beban_array','pendapatan_total','beban_total','hpp_array','hpp_total'));
     }
 
     /**

@@ -80,17 +80,17 @@
           <input type="hidden" name="company_id" value="{{Auth::user()->company_id}}">
           <div class="form-group">
             <label>Modal</label>
-            <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Nama Modal">
+            <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Nama Modal" required>
           </div>
 
           <div class="form-group">
             <label>Jumlah</label>
-            <input name="capital_amount" type="number" class="form-control" placeholder="Masukkan Besar Modal">
+            <input name="capital_amount" type="number" class="form-control" placeholder="Masukkan Besar Modal" required>
           </div>
 
           <div class="form-group">
             <label>Keterangan</label>
-            <textarea name="explanation" id="" cols="30" rows="5" class="form-control"></textarea>
+            <textarea name="explanation" id="" cols="30" rows="5" class="form-control" required></textarea>
           </div>
 
           <button class="btn btn-primary" type="submit">Tambah Modal</button>

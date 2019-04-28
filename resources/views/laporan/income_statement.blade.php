@@ -36,12 +36,10 @@
                     </tr>
                         <!-- foreach di sini -->
                         @foreach($pendapatan_array as $pendapatan)
-                        @if($pendapatan->total_kredit - $pendapatan->total_debit > 0)
                         <tr>
                             <th colspan="1" style="padding-left:7%">{{$pendapatan->account_name}}</th>
                             <th colspan="1" class="text-right">{{$pendapatan->total_kredit - $pendapatan->total_debit}}</th>
                         </tr>
-                        @endif
                         @endforeach
                         <!-- end foreach -->
                     <tr>
@@ -63,12 +61,10 @@
                     </tr>
                         <!-- foreach di sini -->
                         @foreach($beban_array as $beban)
-                        @if($beban->total_kredit - $beban->total_debit != 0)
                         <tr>
                             <th colspan="1" style="padding-left:7%">{{$beban->account_name}}</th>
                             <th colspan="1" class="text-right">{{$beban->total_kredit - $beban->total_debit}}</th>
                         </tr>
-                        @endif
                         @endforeach
                         <!-- end foreach -->
                     <tr>
