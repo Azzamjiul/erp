@@ -183,15 +183,15 @@ return [
             'submenu' => [
                 [
                     'text'    => 'Income Statement',
-                    'url'     => '/incomestatement',
+                    'url'     => '/ic',
                 ],
                 [
                     'text' => 'Balance Sheet',
-                    'url'  => '/balancesheet',
+                    'url'  => '/bs',
                 ],
                 [
-                    'text'    => 'Cashflowç',
-                    'url'     => 'cashflow',
+                    'text'    => 'Cashflow',
+                    'url'     => '/cf',
                 ],
             ],
         ],
