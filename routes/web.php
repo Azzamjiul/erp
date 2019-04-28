@@ -55,3 +55,6 @@ Route::resource('journal','JournalController');
 
 // Income Statement
 Route::resource('ic', 'IncomeStatementController');
+
+// Balance Sheet
+Route::resource('bs', 'BalanceSheetController');

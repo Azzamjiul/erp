@@ -23,22 +23,15 @@ class AccountController extends Controller
         $id = isset($request->id) ? $request->id : 0;
         $results = array();
         $results = Account::where('parentId','=',$id)->get();
-        // dd($request);
         foreach($results as $result){
-            // dd('HERE');
             $result->state = $this->has_child($result->id) ? 'closed' : 'open';
-            // if($result->quantity != NULL){
-            //     $result->total = $result->price * $result->quantity;
-            // }
         }
         return json_encode($results);
     }
 
     public function has_child($id){
-        $rs = DB::select('select count(*) as jumlah from products where parentId='.$id);
-        // dd($rs[0]);
+        $rs = DB::select('select count(*) as jumlah from gl_account where parentId='.$id);
         $row = $rs[0]->jumlah;
-        // dd('here');
         return $row>0 ? true : false;
     }
 
