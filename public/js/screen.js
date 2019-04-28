@@ -5,6 +5,6 @@ $(document).ready(function(){
         $("#namaProduk").attr("width", "auto");
       }
       else{
-        $("#namaProduk").attr("width", ""+$(window).width()*7.3/10);
+        $("#namaProduk").attr("width", ""+$(window).width()*7/10);
       }
   });
