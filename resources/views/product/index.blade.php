@@ -81,7 +81,7 @@
     <div class="col-xs-12 col-lg-12">
         <div class="box">
             <div id="toolbar">
-                    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()">Add Product</a>
+                    <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()" data-toggle="modal" data-target="#modal-default">Add Product</a>
                     <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editComp()">Edit Company</a> -->
                     <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove Company</a> -->
             </div>
@@ -139,6 +139,49 @@
             }
         });
     </script>
+
+<div class="modal fade" id="modal-default">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Menambah Produk</h4>
+      </div>
+      <div class="modal-body">
+        <form role="form" action="{{route('capital.store')}}" method="post">
+          <div class="form-group">
+            <label>Parent</label>
+          </div>
+          <div class="form-group">
+            <label>Product group</label>
+          </div>
+          @csrf
+          <!-- hidden input -->
+          <input type="hidden" name="user_id" value="{{Auth::id()}}">
+          <input type="hidden" name="company_id" value="{{Auth::user()->company_id}}">
+          <div class="form-group">
+            <label>Nama Produk</label>
+            <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Nama Produk">
+          </div>
+
+          <div class="form-group">
+            <label>Bar Code</label>
+            <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Bar Code">
+          </div>
+
+          <button class="btn btn-primary" type="submit">Tambah Modal</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
 @stop
 
 @section('css')
