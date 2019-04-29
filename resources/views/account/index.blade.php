@@ -68,7 +68,7 @@
                 </div>
 
                 <!-- add account -->
-                <div id="accForm" class="easyui-dialog" style="width:50%; height:auto; padding: 10px 20px" closed="true" buttons="#dialog-buttons">
+                <div id="accForm" class="easyui-dialog" style=" height:auto; padding: 10px 20px" closed="true" buttons="#dialog-buttons">
                     <form id="fm" method="post" novalidate>
                         @csrf
                         <input type="hidden" name="user_id" value="{{Auth::id()}}">
@@ -100,12 +100,15 @@
                         <div class="form-item">
                             <label for="type" style="font-size: 16px; margin-top: 10px">Account Code</label><br />
                             <input id="acc_code1" type="text" name="acc_code1" class="easyui-textbox cleared" required="true" maxlength="50" readonly="true" />
+                            <br>
+                            <br>
                             <input id="acc_code2" type="text" name="account_number" class="easyui-numerbox cleared" required="true" maxlength="50" />
                         </div>
                         <div class="form-item">
                             <label for="type" style="font-size: 16px; margin-top: 10px">Account Name</label><br />
                             <input type="text" name="account_name" class="easyui-validatebox cleared" required="true" style="width:100%;" maxlength="50" />
                         </div>
+                        <br>
                     </form>
                 </div>
 

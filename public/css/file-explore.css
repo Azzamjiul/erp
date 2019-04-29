@@ -68,8 +68,15 @@ li.folder-root.open>ul{
     margin-left:20px;
 }
 
+#accForm{
+    width: 50%;
+}
+
 @media screen and (max-width:800px){
     #tableInventory{
         margin-left:0px;
+    }
+    #accForm{
+        width: 100%;
     }
 }
