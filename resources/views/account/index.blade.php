@@ -8,46 +8,6 @@
 <h1>Chart of Account</h1>
 @stop
 
-
-@section('')
-<div class="container">
-    <table id="dg" title="Account" class="easyui-treegrid" method="get" style="width:100%;height:100%" url="getAccount" rownumbers="true" idField="id" treeField="account_number" toolbar="#toolbar">
-        <thead>
-            <tr>
-                <th field="account_number" width="300">Account Number</th>
-                <th field="account_name" width="300" align="left">Account Name</th>
-            </tr>
-        </thead>
-    </table>
-    <div id="toolbar">
-        <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAccount()">New Account</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editUser()">Edit User</a>
-        <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove User</a>
-    </div>
-    <div id="dlg" class="easyui-dialog" style="width:400px;height:280px;padding:10px 20px" closed="true" buttons="#dlg-buttons">
-        <div class="ftitle">Tambah Kode Akun</div>
-        <form id="fm" method="post" novalidate>
-            <div class="fitem form-group">
-                <label>Account Parent :</label>
-                <input name="firstname" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem form-group">
-                <label>Account Code :</label>
-                <input name="lastname" class="easyui-textbox" required="true">
-            </div>
-            <div class="fitem form-group">
-                <label>Account Name :</label>
-                <input name="phone" class="easyui-textbox">
-            </div>
-        </form>
-    </div>
-    <div id="dlg-buttons">
-        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="saveAccount()" style="width:90px">Save</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">Cancel</a>
-    </div>
-</div>
-@stop
-
 @section('content')
 <!-- Content Wrapper. Contains page content -->
             <div class="box-body table-responsive no-padding">
