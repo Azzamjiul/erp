@@ -73,30 +73,32 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <table id="table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
-                  <thead>
-                    <tr role="row">
-                      <th rowspan="1" colspan="1">Nama Barang</th>
-                      <th rowspan="1" colspan="1">Jumlah</th>
-                      <th rowspan="1" colspan="1">Harga Satuan</th>
-                      <th rowspan="1" colspan="1">Subtotal</th>
-                      <th rowspan="1" colspan="1">Actions</th>
-                    </tr>
-                  </thead>
+                <div class="table-responsive">
+                  <table id="table" class="table table-hover dataTable" role="grid" aria-describedby="example2_info">
+                    <thead>
+                      <tr role="row">
+                        <th rowspan="1" colspan="1">Nama Barang</th>
+                        <th rowspan="1" colspan="1">Jumlah</th>
+                        <th rowspan="1" colspan="1">Harga Satuan</th>
+                        <th rowspan="1" colspan="1">Subtotal</th>
+                        <th rowspan="1" colspan="1">Actions</th>
+                      </tr>
+                    </thead>
 
-                  <tbody id="data">
-                    {{-- tambah data disini --}}
-                  </tbody>
+                    <tbody id="data">
+                      {{-- tambah data disini --}}
+                    </tbody>
 
-                  <tfoot>
-                    <th colspan="3" style="text-align:right;">Total</th>
-                    <th colspan="id">
-                      <input type='text' class='total form-control' id='totaltampil' disabled>
-                      <input type='hidden' class='total form-control' name='totalharga' id="total">
-                    </th>
-                  </tfoot>
+                    <tfoot>
+                      <th colspan="3" style="text-align:right;">Total</th>
+                      <th colspan="2">
+                        <input type='text' class='total form-control' id='totaltampil' disabled>
+                        <input type='hidden' class='total form-control' name='totalharga' id="total">
+                      </th>
+                    </tfoot>
 
-                </table>
+                  </table>
+                </div>
               </div>
 
               <div align="center">
