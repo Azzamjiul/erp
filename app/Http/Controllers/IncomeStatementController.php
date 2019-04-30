@@ -20,6 +20,8 @@ class IncomeStatementController extends Controller
         ->join('gl_account', 'journal.account_number','=','gl_account.account_number')
         ->where('journal.account_number','like','4-%')
         ->groupBy('gl_account.account_name')
+        ->groupBy('gl_account.account_number')
+        ->orderBy('gl_account.account_number', 'asc')
         ->get();
 
         $pendapatan_total = DB::table('journal')
