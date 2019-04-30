@@ -73,8 +73,8 @@ class BalanceSheetController extends Controller
         ->whereOr('journal.account_number','like','6-%')
         ->get();
 
-        $retained_earning = ($pendapatan_total[0]->total_kredit - $pendapatan_total[0]->total_debit) + ($beban_total[0]->total_kredit - $beban_total[0]->total_debit);
-
+        // $retained_earning = ($pendapatan_total[0]->total_kredit - $pendapatan_total[0]->total_debit) + ($beban_total[0]->total_kredit - $beban_total[0]->total_debit);
+        // die($aktiva_lancar_total[0]->total_kredit);
         return view('laporan.balance_sheet', compact('aktiva_lancar','aktiva_lancar_total','aktiva_tetap','aktiva_tetap_total','kewajiban_lancar','kewajiban_lancar_total','modal','modal_total','retained_earning'));
     }
 

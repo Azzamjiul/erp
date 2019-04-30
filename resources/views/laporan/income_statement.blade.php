@@ -26,8 +26,7 @@
 
                     <!-- pendapatan -->
                     <tr>
-                        <td>Pendapatan</td>
-                        <th colspan="1"></th>
+                        <td colspan="2" style="background-color: #d9d9d9">Pendapatan</td>
                     </tr>
                     <tr>
                         <td colspan="1" style="padding-left:5%">Pendapatan dari Penjualan</td>
@@ -49,12 +48,41 @@
                         @endforeach
                     </tr>
                     <tr>
-                        <td>Beban</td>
-                        <th colspan="1"></th>
+                        <td colspan="2" style="background-color: #d9d9d9">Harga Pokok Penjualan</td>
                     </tr>
                     <!-- end pendapatan -->
 
                     <!-- harga pokok penjualan -->
+                    <tr>
+                        <td colspan="1" style="padding-left:5%">Harga Pokok Penjualan</td>
+                        <th colspan="1"></th>
+                    </tr>
+                        <!-- foreach di sini -->
+                        @foreach($hpp_array as $hpp)
+                        <tr>
+                            <th colspan="1" style="padding-left:7%">{{$hpp->account_name}}</th>
+                            <th colspan="1" class="text-right">{{-($hpp->total_kredit - $hpp->total_debit)}}</th>
+                        </tr>
+                        @endforeach
+                        <!-- end foreach -->
+                    <tr>
+                        <td colspan="1" style="padding-left:5%">Total Beban</td>
+                        @foreach($hpp_total as $hpp_total)
+                        <th colspan="1" class="text-right">{{ -($hpp_total->total_kredit - $hpp_total->total_debit)}}</th>
+                        @endforeach
+                    </tr>
+                    <!-- end harga pokok penjualan -->
+
+                    <tr>
+                        <td colspan="1" style="background-color: #e8613c">Laba Kotor</td>
+                        <th colspan="1" style="background-color: #e8613c" class="text-right">{{($pendapatan_total->total_kredit - $pendapatan_total->total_debit) + ($hpp_total->total_kredit - $hpp_total->total_debit)}}</th>
+                    </tr>
+
+                    <tr>
+                        <td colspan="2" style="background-color: #d9d9d9" >Beban</td>
+                    </tr>
+
+                    <!-- Beban -->
                     <tr>
                         <td colspan="1" style="padding-left:5%">Beban</td>
                         <th colspan="1"></th>
@@ -79,8 +107,8 @@
                     <br>
 
                     <tr>
-                        <td colspan="1" style="padding-left:5%;background-color: #d9d9d9">Pendapatan Bersih</td>
-                        <th colspan="1" style="background-color: #d9d9d9" class="text-right">{{($pendapatan_total->total_kredit - $pendapatan_total->total_debit) + ($beban_total->total_kredit - $beban_total->total_debit)}}</th>
+                        <td colspan="1" style="background-color: #e8613c">Pendapatan Bersih</td>
+                        <th colspan="1" style="background-color: #e8613c" class="text-right">{{($pendapatan_total->total_kredit - $pendapatan_total->total_debit) + ($beban_total->total_kredit - $beban_total->total_debit) + ($hpp_total->total_kredit - $hpp_total->total_debit)}}</th>
                     </tr>
                     <!-- end harga pokok penjualan -->
 

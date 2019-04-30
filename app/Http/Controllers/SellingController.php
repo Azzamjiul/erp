@@ -78,6 +78,7 @@ class SellingController extends Controller
 
             //masukin table selling_detail
             $banyak_barang = $request->input('banyak_barang');
+            $hpp_total = 0;
 
             for($i=0;$i<$banyak_barang;$i++){
                
@@ -87,6 +88,7 @@ class SellingController extends Controller
                 $quantity = $request->quantity[$i];
                 $harga_beli = $inventory[0]->inventory_item_purchase_price;
                 $hpp = $harga_beli * $quantity;
+                $hpp_total += $hpp;
                 $unit_price = $request->unit_price[$i]; //harga jual
                 $subtotal = $request->subtotal[$i];
                 $tax = 0.1 * $subtotal;
@@ -118,7 +120,7 @@ class SellingController extends Controller
                 'line_debit_name' => 'Harga Pokok Penjualan',
                 'line_credit_name' => NULL,
                 'account_number' =>'5-10001',
-                'line_debit' => $hpp,
+                'line_debit' => $hpp_total,
                 'line_credit' => NULL
             ];
             Journal::create($journal);
@@ -132,7 +134,7 @@ class SellingController extends Controller
                 'line_credit_name' => 'Persediaan Barang Dagangan',
                 'account_number' =>'1-10201',
                 'line_debit' => NULL,
-                'line_credit' => $hpp
+                'line_credit' => $hpp_total
             ];
             Journal::create($journal);
             $urutan_journal++;
