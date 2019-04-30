@@ -40,7 +40,7 @@
           @foreach($sales as $sale)
             <tr>
               <td>{{$sale->created_at->format('d-m-Y')}}</td>
-              <td>S{{$sale->sales_order_no}}</td>
+              <td>{{$sale->sales_order_no}}</td>
               <td>{{$sale->customer_id}}</td>
               <td>{{$sale->user_id}}</td>
               <td>{{$sale->total}}</td>

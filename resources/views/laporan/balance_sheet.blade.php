@@ -91,8 +91,8 @@
                     <!-- end pendapatan -->
 
                     <tr>
-                        <td colspan="1" style="padding-left:0%;background-color: #e8613c">Total Aktiva</td>
-                        <th colspan="1" style="background-color: #e8613c" class="text-right">{{ $total_aktiva }}</th>
+                        <td colspan="1" style="padding-left:0%;background-color: #f2f248">Total Aktiva</td>
+                        <th colspan="1" style="background-color: #f2f248" class="text-right">{{ $total_aktiva }}</th>
                     </tr>
 
                     <tr>
@@ -150,8 +150,8 @@
                     <br>
 
                     <tr>
-                        <td colspan="1" style="padding-left:0%;background-color: #e8613c">Total Kewajiban dan Modal</td>
-                        <th colspan="1" style="background-color: #e8613c" class="text-right">{{ $total_kewajiban_modal }}</th>
+                        <td colspan="1" style="padding-left:0%;background-color: #f2f248">Total Kewajiban dan Modal</td>
+                        <th colspan="1" style="background-color: #f2f248" class="text-right">{{ $total_kewajiban_modal }}</th>
                     </tr>
                     <!-- end harga pokok penjualan -->
 
