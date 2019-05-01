@@ -125,7 +125,7 @@
           $('#table').on('keyup', '.unit_price, .quantity, .subtotal', hoho);
 
           $('#tambahdataclick').click(function() {
-            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->barcode}}'>{{$product->product_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]'> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger'>Hapus</button> </td></tr>");
+            $("#table").append("<tr role='row' id='table" + a + "'> <td> <select name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->barcode}}'>{{$product->product_name}}</option> @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]'> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger form-control'>Hapus</button> </td></tr>");
             a++;
           });
 

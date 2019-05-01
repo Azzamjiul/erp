@@ -59,7 +59,7 @@
 
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title">Detail Pembelian</h3>
+          <h3 class="box-title">Detail Penjualan</h3>
         </div>
 
         <div class="box-body">
@@ -71,14 +71,15 @@
 
             <div class="row">
               <div class="col-sm-12">
-                <table id="table" class="table table-bordered table-hover dataTable" role="grid" aria-describedby="example2_info">
+                <div class="table-responsive">
+                <table id="table" class="table table-hover dataTable" role="grid" aria-describedby="example2_info">
                   <thead>
                     <tr role="row">
-                      <th rowspan="1" colspan="1">Nama Barang</th>
-                      <th rowspan="1" colspan="1">Harga Satuan</th>
-                      <th rowspan="1" colspan="1">Jumlah</th>
-                      <th rowspan="1" colspan="1">Subtotal</th>
-                      <th rowspan="1" colspan="1">Actions</th>
+                        <th rowspan="1" colspan="1">Nama Barang</th>
+                        <th rowspan="1" colspan="1">Jumlah</th>
+                        <th rowspan="1" colspan="1">Harga Satuan</th>
+                        <th rowspan="1" colspan="1">Subtotal</th>
+                        <th rowspan="1" colspan="1">Actions</th>
                     </tr>
                   </thead>
 
@@ -88,13 +89,15 @@
 
                   <tfoot>
                     <th colspan="3" style="text-align:right;">Total</th>
-                    <th colspan="1">
+                    <th colspan="2">
                       <input type='text' class='total form-control' id='totaltampil' disabled>
                       <input type='hidden' class='total form-control' name='totalharga' id="total">
                     </th>
                   </tfoot>
 
                 </table>
+                </div>
+
               </div>
 
               <div align="center">
@@ -121,31 +124,11 @@
           $('#table').on('keyup', '.unit_price, .quantity, .subtotal', hoho);
 
           $('#tambahdataclick').click(function() {
-            $("#table").append(`
-            <tr role='row' id='table` + a + `'> 
-              <td> 
-                <select id='select` + a + `' onChange="getHarga('select` + a + `','hargabarang` + a + `')" class='form-control' name='product_code[]'>
-                  <option>Pilih Barang</option>
-                @foreach($products as $product) 
-                  <option value='{{$product->product_code}}-{{$product->inventory_item_sale_price}}'>{{$product->product_code}} - {{$product->inventory_item_name}}</option> 
-                @endforeach 
-                </select>
-              </td>
-              <td> 
-                <input required type='text' class='unit_price form-control' id='hargabarang`+ a +`' name='unit_price[]'>
-              </td> 
-              <td> 
-                <input required type='text' class='quantity form-control' id='jumlahbarang`+ a +`' name='quantity[]'>
-              </td> 
-              <td> 
-                <input type='text' class='cal subtotal form-control' id='subtotalbarang`+ a +`' name='subtotal[]'> 
-              </td> 
-              <td>
-                <button onClick='hapus(` + a + `)' class='btn btn-xs btn-danger'>Hapus</button>
-              </td>
-            </tr>`);
+            $("#table").append(`<tr role='row' id='table" + a + "'> <td> <select class="form" name='item_barcode[]'> @foreach($products as $product) <option value='{{$product->product_code}}-{{$product->inventory_item_sale_price}}'>{{$product->product_code}} - {{$product->inventory_item_name}}</option>  @endforeach </select> </td> <td> <input required type='text' class='quantity form-control' id='jumlahbarang"+ a +"' name='quantity[]'> </td> <td> <input required type='text' class='unit_price form-control' id='hargabarang"+ a +"' name='unit_price[]'> </td> <td> <input type='text' class='cal subtotal form-control' id='subtotalbarang"+ a +"' name='subtotal[]'> </td> <td> <button onClick='hapus(" + a + ")' class='btn btn-xs btn-danger form-control'>Hapus</button> </td></tr>`);
             a++;
           });
+
+
 
           function getHarga(select,field){
             console.log(select);

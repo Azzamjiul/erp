@@ -53,7 +53,7 @@
                 <h3 class="box-title">Daftar Barang</h3>
             </div>
 
-            <div class="box-body">
+            <div class="box-body table-responsive">
                 <table class="table table-hover">
                     <thead>
                         <th>Product Code</th>
