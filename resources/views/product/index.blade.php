@@ -77,31 +77,20 @@
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="row">
-    <div class="col-xs-12 col-lg-12">
-        <div class="box">
-            <div id="toolbar">
+<div class="row tableInventory">
+        <div id="toolbar">
                     <a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="newAcc()" data-toggle="modal" data-target="#modal-default">Add Product</a>
-                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="editComp()">Edit Company</a> -->
-                    <!-- <a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="destroyUser()">Remove Company</a> -->
-            </div>
-            <div class="box-body table-responsive no-padding">
-                <table id="laporan" class="easyui-treegrid" style="width:auto;height:450px" url="getProduct" toolbar="#toolbar" method="get" idField="id" treeField="product_name" rownumbers="true" fitColumns="true">
+        </div>
+        <div class="table-responsive no-padding">
+                <table id="laporan" class="easyui-treegrid" style="width:100%;height:auto;" url="getProduct" toolbar="#toolbar" method="get" idField="id" treeField="product_name" rownumbers="true" fitColumns="true">
                     <thead>
                         <tr>
-                            <th field="product_name" width="50">Nama Produk</th>
+                            <th field="product_name" width="100">Nama Produk</th>
                         </tr>
                     </thead>
                 </table>
-            </div><!-- /.box-body -->
-        </div><!-- /.box -->
-        <div class="row">
-            <div class="col-md-12 text-center">
-                <?php
-                ?>
-            </div>
-        </div>
-    </div>
+        </div><!-- /.box-body -->
+</div>
 
     <script type="text/javascript">
         $(document).ready(function() {
@@ -174,7 +163,7 @@
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
     <!-- /.modal-content -->
@@ -189,10 +178,12 @@
     <!-- Easy UI CSS -->
     <link href="{{asset('vendor/jeasyui/themes/default/easyui.css')}}" rel="stylesheet">
     <link href="{{asset('vendor/jeasyui/themes/icon.css')}}" rel="stylesheet">
+    <link href="css/file-explore.css" rel="stylesheet">
 @stop
 
 @section('js')
     <!-- Easy UI JS -->
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.min.js')}}"></script>
     <script type="text/javascript" src="{{asset('vendor/jeasyui/jquery.easyui.min.js')}}"></script>
+    <script type="text/javascript" src="js/screen.js"></script>
 @stop

@@ -77,8 +77,9 @@
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
-<div class="row">
-            <div class="box-body table-responsive no-padding" id="tableInventory">
+
+<div class="row tableInventory">
+            <div class="table-responsive no-padding" >
                 <table id="laporan" class="easyui-treegrid" style="width:100%;height:auto;" url="getInventory" toolbar="#toolbar" method="get" idField="id" treeField="text" rownumbers="true" fitColumns="true">
                     <thead>
                         <tr>
@@ -87,7 +88,7 @@
                         </tr>
                     </thead>
                 </table>
-            </div><!-- /.box-body -->
+            </div>
 </div>
 @stop
 
