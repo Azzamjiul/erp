@@ -101,13 +101,11 @@
             <label>Nilai Sisa</label>
             <input name="asset_salvation_value" type="number" class="form-control" placeholder="Masukkan Sisa Nilai Asset">
           </div>
-
-
-          <button type="submit" class="btn btn-primary">Tambah Asset</button>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Tambah Modal</button>
       </div>
     </div>
     <!-- /.modal-content -->

@@ -158,12 +158,11 @@
             <label>Bar Code</label>
             <input name="capital_name" type="text" class="form-control" placeholder="Masukkan Bar Code">
           </div>
-
-          <button class="btn btn-primary" type="submit">Tambah Modal</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Tambah Modal</button>
       </div>
     </div>
     <!-- /.modal-content -->

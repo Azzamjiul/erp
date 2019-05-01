@@ -92,12 +92,11 @@
             <label>Keterangan</label>
             <textarea name="explanation" id="" cols="30" rows="5" class="form-control" required></textarea>
           </div>
-
-          <button class="btn btn-primary" type="submit">Tambah Modal</button>
         </form>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Tambah Modal</button>
       </div>
     </div>
     <!-- /.modal-content -->
